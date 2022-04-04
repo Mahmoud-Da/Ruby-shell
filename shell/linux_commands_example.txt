@@ -1,0 +1,50 @@
+以下はlinuxを利用するために、必要な基本なコマンドの利用例のまとめ：
+-pwd現在の作業ディレクトリーを表示するコマンドです。
+コマンド: pwd
+結果：/Users/m_dabbagh_it/tryout/bootcamp
+
+-ls コマンドはいるディレクターの内容（ファイルなど）を表示されます。
+なお： ls -laは追加するとファイルの詳細を表しています
+コマンド: ls
+結果：README.md       git             shell
+コマンド: ls -la
+結果：
+drwxr-xr-x   6 m_dabbagh_it  staff  192  4  4 01:58 .
+drwxr-xr-x   4 m_dabbagh_it  staff  128  4  2 05:22 ..
+drwxr-xr-x  15 m_dabbagh_it  staff  480  4  4 01:58 .git
+-rw-r--r--   1 m_dabbagh_it  staff   10  4  3 23:53 README.md
+drwxr-xr-x   5 m_dabbagh_it  staff  160  4  4 00:51 git
+drwxr-xr-x   3 m_dabbagh_it  staff   96  4  4 01:58 shell
+
+-cd 指定したディレクトリーに移動します。
+コマンド: cd git
+結果：README.md       git             shell
+
+-mkdir デイレクターを新規作成するコマンドです
+コマンド: mkdir ruby
+lsを押すと確認できます。
+結果：definition.txt     git_commands.txt      log       ruby
+
+-rm ディレクトリーまたはファイル削除します
+コマンド: rm -d ruby (ディレクトリー空の際に -d を追加します)
+lsを押すと
+結果：definition.txt     git_commands.txt     log
+
+
+-touch ファイルを作成したり、ファイルのタイムスタンプを変更するコマンドです。
+コマンド: touch decument
+lsを押すと
+結果：decument          definition.txt        git_commands.txt     log
+
+
+-mv ファイルやディレクトリーを移動の際に、ファイルの明晰を変更する際も、のコマンドです。
+1- mv 元のファイル（ディレクトリー） 変更後のファイル(ディレクトリー)名
+コマンド: mv decument decument2
+lsを押すと
+結果：decument2         definition.txt    git_commands.txt    log
+
+
+2- mv 元のファイル（ディレクトリー） 移動するディレクトリー名
+コマンド: mv decument2 log
+cd log そのあと lsを押すと
+結果：202204     decument2
