@@ -30,24 +30,36 @@ fi
 
 elifを利用すると、ブロックを複数追加することにより、さらに多くの分岐を作ることも可能になります。
 
+演算子：
+&& -> かつ
+|| -> または
+! -> 否定
 
-
-
-
-
-
-
-
-
--shellでは条件分岐作成するためにtestコマンドも利用できます。
-尚：オプションにより細かく指定することが可能である。
-testのオプション:
+数字のオプション:
 (-eq) → equal → 同等
 (-ne) → not equal → 等しくない
 (-lt) → less than → 未満
 (-le) → less than or equal → 以下
 (-gt) → greater than → より大きい
 (-ge) → greater than or equal → 以上
+
+文字列のオブション:
+(=) → equal → 同等
+(!=) → not equal → 等しくない
+
+
+紹介例：
+if_statement_string.sh
+if_statement_number.sh
+
+尚：ファイルを実行できる方法：
+例：
+コマンド: chmod +x ファイル名 + Enterキー
+コマンド: ./ファイル名
+
+
+
+-shellでは条件分岐作成するためにtestコマンドも利用できます。
 
 そのほかのオプション：
 ファイルの比較の際に
