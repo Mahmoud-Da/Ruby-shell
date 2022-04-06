@@ -1,7 +1,8 @@
+#! /bin/bash
 a=Yuki
 b=Suzuki
 if [[ "$a" = "$b" ]]; then
-echo "aさんはbさんと同じ名前です"
+  echo "aさんはbさんと同じ名前です"
 else
-echo "aさんとbさんは同じ名前を持っていません"
+  echo "aさんとbさんは同じ名前を持っていません"
 fi
