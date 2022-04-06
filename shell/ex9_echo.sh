@@ -1,3 +1,3 @@
 #!/bin/bash
-snow=white
+snow="white"
 echo "$snow"

@@ -1,3 +1,3 @@
 #!/bin/bash
-a=車
+a="車"
 echo $a
