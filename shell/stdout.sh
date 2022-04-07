@@ -1,2 +1,2 @@
 #! /bin/bash
-ls > samplefile.txt
+ls >/dev/stdout
