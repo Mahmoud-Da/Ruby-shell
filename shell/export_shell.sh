@@ -1,3 +1,3 @@
 #! /bin/bash
-export Mahmoud="hello"
-echo $Mahmoud
+export var_name="mahmoud"
+echo $var_name
