@@ -1,2 +1,2 @@
 #! /bin/bash
-ls >/dev/stdout
+echo "hello world" >/dev/stdout
