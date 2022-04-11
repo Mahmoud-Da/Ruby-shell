@@ -1,2 +1,2 @@
 #! /bin/bash
-ps aux| grep chrome
+ps aux | grep chrome
