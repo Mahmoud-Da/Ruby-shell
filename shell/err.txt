@@ -1,0 +1,1 @@
+cat: samplefile.txt: Permission denied
