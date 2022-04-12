@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "hi"  > Greetings.txt
+echo "hi" > Greetings.txt
