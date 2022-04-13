@@ -1,2 +1,2 @@
 #! /bin/bash
-man kill
+find array* | whoami
