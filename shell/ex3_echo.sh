@@ -1,3 +1,3 @@
 #!/bin/bash
 price=3400
-echo $price YEN
+echo "$price YEN"
