@@ -5,7 +5,7 @@ googleをし調べながら、
 修正:
 echoファイル
 stdout.sh
-
+check_command_option.sh -> check_file_admin.sh
 
 作成：
 ruby/numeric_class_ex.rb
@@ -20,4 +20,5 @@ ruby/bytes_to_bits.rb
 
 -質問.感想
 
-
+前にPRは適切の形にするのは気にしないで、コードは正常に動けば、大丈夫かと認識でした。
+リビューのおかげ様で、自分のインターんしているところもPRをできる限り適切の形するようになりました。
