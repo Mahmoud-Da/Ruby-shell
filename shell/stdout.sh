@@ -1,2 +1,2 @@
 #! /bin/bash
-echo "stdout" >&1
+echo "stdout" 2>&1 | tee stdout.log
