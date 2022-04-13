@@ -1,2 +1,2 @@
 #! /bin/bash
-echo "hello world" >&1
+echo "stdout" >&1
