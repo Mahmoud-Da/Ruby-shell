@@ -1,2 +1,2 @@
 #! /bin/bash
-echo $(</dev/stdin)
+echo "stdin" >&0
