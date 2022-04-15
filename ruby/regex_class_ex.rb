@@ -1,6 +1,6 @@
 string = '東急田園都市線/江田駅 歩18分'
-re = Regexp.new(/^(\W+)線\/(\W+)駅\s歩(\d+)分$/)
-re =~ string
+result = Regexp.new(/^(\W+)線\/(\W+)駅\s歩(\d+)分$/)
+result =~ string
 
 line = Regexp.last_match[1]
 station = Regexp.last_match[2]
