@@ -34,11 +34,11 @@ if [ $1 = "-h" -o $1 = "--help" ]; then
   usage
 elif [ $1 == 'ruby' ]; then
   cd ruby/log/
-  touch "$(date +%F).txt"
+  touch | cat log_sample.txt >> "$(date +%F).txt"
   echo "ログはrubyファイルに作成されました。"
 elif [ $1 == 'shell' ]; then
   cd shell/log/
-  touch "$(date +%F).txt"
+  touch | cat log_sample.txt >> "$(date +%F).txt"
   echo "ログはshellファイルに作成されました。"
 else
   printf "\033[31m%s\033[m\n" "ERROR: 下記の使用方法を再度ご確認ください"
