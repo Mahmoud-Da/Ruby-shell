@@ -9,17 +9,13 @@ ruby/symbol_class_ex.rb
 ruby/array_ex.rb
 ruby/hash_class_ex.rb
 ruby/range_ex.rb
-ruby/diffrence_between_hash_array_ex.rb
-ruby/regex_class_ex.rb
-ruby/ruby_class_ex.rb
 
-14日と15日のログのファイルを一緒に纏めて、作成しました。
 
 -週間の目標稼働時間.実績時間
 木曜日 6時間
-金曜日 3時間
 
 -質問.感想
 rubyの練習コードを書いた際に様ざな挑戦がありまして、色んな
-ことを学ぶことができました。今週中にぜrubyのシートを終わらせるように全力尽くします。
+ことを学ぶことができました。今週中にぜrubyのシートを終わらせるように
+全力尽くします。
 
