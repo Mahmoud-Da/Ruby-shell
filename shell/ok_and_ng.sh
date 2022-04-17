@@ -4,5 +4,5 @@ if [ $1 == 'ok' ]; then
 fi
 
 if [ $1 == 'ng' ]; then
-  echo "エラーです！" >> ng.txt
+  echo "エラーです！" &> ng.txt
 fi
