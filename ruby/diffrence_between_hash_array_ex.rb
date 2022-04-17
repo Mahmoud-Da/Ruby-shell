@@ -4,5 +4,5 @@ students = [
   {id: 3, name: "Paul", age: 18}
 ]
 students.each do | student |
-puts "#{student[:name]} is a #{student[:age]} year old student."
+  puts "#{student[:name]} is a #{student[:age]} year old student."
 end
