@@ -1,0 +1,17 @@
+-作業内容：
+googleをし調べながら、
+修正:
+しませんでした。
+
+作成：
+ruby/diffrence_between_hash_array_ex.rb
+ruby/regex_class_ex.rb
+ruby/ruby_class_ex.rb
+
+
+-週間の目標稼働時間.実績時間
+実績時間3時間です。
+
+-質問.感想
+
+特にあります。
