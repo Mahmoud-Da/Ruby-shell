@@ -15,7 +15,6 @@ function usage {
   --help, -h    ヘルプを表示
 
 EOF
-
 exit 2
 }
 
