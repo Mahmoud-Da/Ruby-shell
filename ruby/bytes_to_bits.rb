@@ -5,3 +5,4 @@ def bytes_to_bits(bytes)
 end
 
 puts bytes_to_bits 8
+puts bytes_to_bits 16
