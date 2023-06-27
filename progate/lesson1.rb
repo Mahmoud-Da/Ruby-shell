@@ -3,16 +3,15 @@
 
 # まずは、そのままRubyのコードを実行してみましょう。
 # 「コンソール」に、あなたが書いたコードの実行結果が出力されます。
-puts "Hello Ruby"
+puts 'Hello Ruby'
 
 # index.rbには、下記の課題に対応したコメントが書かれています。
 # 対応するコメントの下に課題のコードを書いていきましょう。
 # 「こんにちは、Ruby」と出力してください
-puts "こんにちは、Ruby"
+puts 'こんにちは、Ruby'
 
 # 以下の行をコメントにしてください
-#puts "Hello Ruby"
-
+# puts "Hello Ruby"
 
 # 数値を扱ってみましょう。
 # 数値の37を出力してください
@@ -22,7 +21,7 @@ puts 37
 puts 2 + 9
 
 # 文字列「2 + 9」を出力してください
-puts "2 + 9"
+puts '2 + 9'
 
 # 「*」を用いて、13に9を掛けた値を出力してください
 puts 13 * 9
@@ -34,27 +33,27 @@ puts 32 / 8
 puts 18 % 5
 
 # 「私は」と「にんじゃわんこです」を連結して出力してください
-puts "私は" + "にんじゃわんこです"
+puts '私は' + 'にんじゃわんこです'
 
 # 文字列の「38」と「19」を連結して出力してください
-puts "38" + "19"
+puts '38' + '19'
 
 #################
 # 変数を使ってみよう
 ##################
 
 # 変数nameに、文字列「にんじゃわんこ」を代入してください
-name = "にんじゃわんこ"
+name = 'にんじゃわんこ'
 
 # 変数nameを出力してください
 puts name
 
 # 文字列の入った変数を使ってみましょう。
 # 変数textが用意されています。
-text = "プログラミングを学ぼう"
+text = 'プログラミングを学ぼう'
 
 # 文字列「Progateで」と変数textを連結して、出力してください
-puts "Progateで" + text
+puts 'Progateで' + text
 
 length = 8
 width = 9
@@ -63,13 +62,12 @@ width = 9
 puts length * width
 
 # 変数textに「をマスターしよう」を代入してください
-text = "をマスターしよう"
+text = 'をマスターしよう'
 
 # 下記の文字列に変数textを連結してください
-puts "HTML" + text
-puts "CSS" + text
-puts "Ruby" + text
-
+puts 'HTML' + text
+puts 'CSS' + text
+puts 'Ruby' + text
 
 # 変数length、変数widthが用意されており、
 # ・width
@@ -81,7 +79,7 @@ length = 9
 width = 8
 puts width
 puts length * width
-puts "----"
+puts '----'
 
 # 変数widthの値を13に変更してください
 width = 13
@@ -90,7 +88,7 @@ puts width
 puts length * width
 
 # widthの値に5を足して、widthの値を変更してください
-width = width + 5
+width += 5
 
 puts width
 puts length * width
@@ -107,51 +105,38 @@ puts "面積は#{area}です"
 score = 92
 
 # 条件式を「score > 80」とするif文をつくってください
-if score > 80
-  puts "よくできました"
-end 
+puts 'よくできました' if score > 80
 
 # 「score <= 80」を出力してください
 puts score <= 80
 
 # scoreの値が80以下の場合に、「がんばりましょう」と出力してください
-if score <= 80
-  puts "がんばりましょう"
-end
+puts 'がんばりましょう' if score <= 80
 
 # scoreの値が100の場合、「満点です」と出力してください
-if score == 100
-  puts "満点です"
-end
-
+puts '満点です' if score == 100
 
 # scoreの値が100でない場合、「満点ではありません」と出力してください
-if score != 100
-  puts "満点ではありません"
-end
-
+puts '満点ではありません' if score != 100
 
 # 条件式が成り立たない場合に「がんばりましょう」と出力されるように書き換えてください
 if score > 80
-  puts "よくできました"
+  puts 'よくできました'
 else
-  puts "がんばりましょう"
+  puts 'がんばりましょう'
 end
 
 # scoreの値が60より大きい場合に「まずまずです」と出力されるように書き換えてください
 if score > 80
-  puts "よくできました"
+  puts 'よくできました'
 elsif score > 60
-  puts "まずまずです"
+  puts 'まずまずです'
 else
-  puts "がんばりましょう"
+  puts 'がんばりましょう'
 end
 
 # 「95以上かつ99以下」の場合のif文を作ってください
-if score >= 95 && score <= 99
-  puts "高得点です!次は満点を目指しましょう。"
-end
-
+puts '高得点です!次は満点を目指しましょう。' if score >= 95 && score <= 99
 
 ############################
 # 課題にチャレンジしよう
@@ -170,11 +155,11 @@ number = 48
 
 # 条件分岐を作成してください
 if number % 3 == 0 && number % 5 == 0
-  puts "15の倍数です"
+  puts '15の倍数です'
 elsif number % 5 == 0
-  puts "5の倍数です"
+  puts '5の倍数です'
 elsif number % 3 == 0
-  puts "3の倍数です"
+  puts '3の倍数です'
 else
-  puts "3の倍数でも5の倍数でもありません"
+  puts '3の倍数でも5の倍数でもありません'
 end
