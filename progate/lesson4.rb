@@ -135,7 +135,7 @@ puts menu1.info
 # 「料理注文システム」を作ろう
 #########################
 
-require './menu'
+require './menu1'
 
 menu1 = Menu.new(name: 'ピザ', price: 800)
 menu2 = Menu.new(name: 'すし', price: 1000)
