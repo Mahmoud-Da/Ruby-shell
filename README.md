@@ -1,2 +1,2 @@
-# play withj ruby and shell
+# Organize the Essentials of Ruby
 
