@@ -10,21 +10,21 @@ puts hoge.class
 # Arrayと表示される
 
 # 選択肢
-# Hashと表示される
+# Hashと表示される 
 
 # 選択肢
-# エラーになる　　=>　✅　#　to_f  => to_f 
-                        # to_i => integer
-                        # to_s => string
-                        # to_c => Complex      以下の形式を解析できます。i、j は大文字、小文字のどちらでも解析できます。 (実部+虚部(Real part + Imaginary part)i / 実部+虚部j / 絶対値@偏角)
-                        # to_r => Rational  有理数（ゆうりすう、英: rational number）とは、整数の比（英: ratio）として表すことができる実数のことである。 分母・分子ともに整数の分数（分母≠0）として表すことができる実数との説明もされる。 整数は、分母が 1 の分数と考えることにより、有理数の特別な場合となる。
+# エラーになる
 
 
+#Memo
+#　to_f  => to_f 
+# to_i => integer
+# to_s => string
+# to_c => Complex      以下の形式を解析できます。i、j は大文字、小文字のどちらでも解析できます。 (実部+虚部(Real part + Imaginary part)i / 実部+虚部j / 絶対値@偏角)
+# to_r => Rational  有理数（ゆうりすう、英: rational number）とは、整数の比（英: ratio）として表すことができる実数のことである。 分母・分子ともに整数の分数（分母≠0）として表すことができる実数との説明もされる。 整数は、分母が 1 の分数と考えることにより、有理数の特別な場合となる。
+# to_h => Hash
 
-
-
-
-
+# calling the to_h method on a string will return an empty hash. The to_h method is used to convert an object into a hash data structure. 
 
 
 
@@ -179,7 +179,7 @@ p [].shift(1)        #=> []
 
 #unshift
 arr = [1,2,3]
-arr.unshift => #引数がないとそのまま何もしない
+arr.unshift #=> #引数がないとそのまま何もしない
 p arr  #=> [1, 2, 3]
 arr.unshift 0
 p arr             #=> [0, 1, 2, 3]
@@ -333,7 +333,7 @@ p [1,2,3].zip([4,5,6], [7,8,9]) { |ary| p ary }
 
 
 #8
-次のコードを実行するとどうなりますか
+# 次のコードを実行するとどうなりますか
 
 h = {a: 100, b: 200}
 h.clear
@@ -369,7 +369,7 @@ Date.today.to_s#と同じ動作をするコードを選びなさい
 Date.today.strftime("%y/%m/%d")
 
 #選択肢
-Date.today.strftime('%y-%m-%d') => ✅
+Date.today.strftime('%y-%m-%d') #=> ✅
 
 #選択肢
 Date.today.strftime("%Y/%m/%d")
@@ -383,7 +383,7 @@ Date.today.strftime("%Y-%m-%d")
 
 
 #Memo
-Date.today.to_s => "2023-07-30"
+Date.today.to_s #=> "2023-07-30"
 
 # strftime(format) -> String[permalink][rdoc][edit]
 # 時刻を format 文字列に従って文字列に変換した結果を返します。
@@ -401,8 +401,8 @@ p t.strftime("%C")               # => 20
 
 arr = [
   true.equal?(true),
-  nil.eql?(NilClass),
-  String.new.equal?(String.new),
+  nil.eql?(NilClass),   #=> false
+  String.new.equal?(String.new), #=> false
   1.equal?(1)
 ]
 
@@ -411,10 +411,418 @@ p arr.collect { |a| a ? 1 : 2 }.inject(:+)
 # 実行時エラーになる
 
 # 選択肢
-# 6と表示される
+# 6と表示される　#=> ✅
 
 # 選択肢
 # 5と表示される
 
 # 選択肢
 # 7と表示される
+
+
+#Memo
+# equalメソッド
+# 二つのオブジェクトが同一のものかどうか調べる時に使用します。
+# other が self 自身の時、真を返します。[PARAM] other:
+# 比較するオブジェクトです。
+# method is used to determine if two objects refer to the same memory location, i.e., 
+# if they are the exact same object in memory. It is different from the == operator,
+# which checks for the equality of the values of two objects.
+
+p("foo".equal?("bar")) #=> false
+p("foo".equal?("foo")) #=> false
+
+p(4.equal?(4)) #=> true
+p(4.equal?(4.0)) #=> false
+
+p(:foo.equal? :foo) #=> true
+
+
+#eqlメソッド
+#オブジェクトと other が等しければ真を返します。Hash で二つのキーが等しいかどうかを判定するのに使われます。
+# The eql? method is used for comparing the content or values of objects rather than their memory locations.
+#  It is implemented differently by different classes.
+#  For built-in Ruby classes like String, Array, Hash, etc., eql? behaves the same as the == operator.
+p("foo".eql?("bar")) #=> false
+p("foo".eql?("foo")) #=> true
+
+p(4.eql?(4)) #=> true
+p(4.eql?(4.0)) #=> false
+
+#collectメソッド 
+# 各要素に対してブロックを評価した結果を全て含む配列を返します。
+# In Ruby, map and collect are two different names for the same method
+# ブロックを省略した場合は Enumerator を返します。
+# すべて 3 倍にした配列を返す
+p (1..3).map {|n| n * 3 }  # => [3, 6, 9]
+p (1..3).collect { "cat" } # => ["cat", "cat", "cat"]
+
+
+#injectメソッド
+# 合計を計算する。
+p [2, 3, 4, 5].inject {|result, item| result + item }        #=> 14
+
+# 自乗和を計算する。初期値をセットする必要がある。
+p [2, 3, 4, 5].inject(0) {|result, item| result + item**2 }  #=> 54
+
+result = 0
+[1, 2, 3, 4, 5].each {|v| result += v }
+p result   # => 15
+
+p [1, 2, 3, 4, 5].inject(:+)                    #=> 15
+p ["b", "c", "d"].inject("abbccddde", :squeeze) #=> "abcde"
+
+
+
+#11
+# 以下のコードを実行するとどうなりますか
+
+X = 10
+X = X < 10 ? "C" : "D"
+puts X
+# 選択肢
+# 警告が表示される
+
+# 選択肢
+# Dが表示された後、警告が表示される
+
+# 選択肢
+# Dが表示される #=> ✅
+
+# 選択肢
+# エラーが発生する
+
+
+
+
+
+
+
+
+
+#12
+# 次のコードを実行するとどうなりますか
+
+hoge = 0 
+def hoge
+  x = 0
+  5.times do |i|
+    x += 1
+  end
+  x
+end
+puts hoge
+# 選択肢
+# 4が表示される
+
+# 選択肢
+# 5が表示される
+
+# 選択肢
+# 例外が発生する
+
+# 選択肢
+# 0が表示される #=> ✅　　　 ローカル変数なので 
+
+
+
+# 次のコードを実行するとどうなりますか
+
+a = [1]
+a[5] = 10
+a.compact
+p a
+# 選択肢
+# エラーが発生する
+
+# 選択肢
+# [1, 10]と表示される
+
+# 選択肢
+# [1, nil, nil, nil, nil, 10]と表示される #=> ⭕️ ✅ ⭕️
+
+# 選択肢
+# [1, 10, 10, 10, 10, 10]と表示される
+
+
+#Memo
+#compactメソッド
+# compact は自身から nil を取り除いた配列を生成して返します。
+#  compact! は自身から破壊的に nil を取り除き、変更が行われた場合は self を、そうでなければ nil を返します。
+ 
+ary = [1, nil, 2, nil, 3, nil]
+p ary.compact   #=> [1, 2, 3]
+p ary           #=> [1, nil, 2, nil, 3, nil]
+ary.compact!
+p ary           #=> [1, 2, 3]
+p ary.compact!  #=> nil
+
+
+a = [1]
+#result [1]
+a[5] = 10
+#[1, nil, nil, nil, nil, 10]
+a.compact
+# [1, 10]
+p a
+#[1, nil, nil, nil, nil, 10]
+
+
+
+
+
+
+#14
+# 実行してもエラーにならないコードを選べ
+
+# 選択肢 => ✅
+(1..10).each
+.reverse_each
+.each do |i|
+  puts i
+end
+
+# 選択肢 => ✅
+(1..10).each.
+reverse_each.
+each do |i|
+  puts i
+end
+
+# 選択肢 => ✅
+(1..10).each \
+.reverse_each \
+.each do |i|
+  puts i
+end
+
+# 選択肢  => ✅
+(1..10).to_a.each.
+reverse_each.
+each do |i|
+  puts i
+end
+
+#Memo
+a = [ "a", "b", "c" ]
+a.reverse_each {|x| print x, " " }
+# => c b a
+
+
+
+
+
+
+
+
+
+
+#15
+# 次のコードを実行するとどうなりますか
+
+a1 = "abc"
+a2 = 'abc'
+
+print a1.equal? a2   
+print a1 == a2
+# 選択
+# 選択肢
+# falsetrueと表示される => ✅
+
+# 選択肢
+# truetrueと表示される
+
+# 選択肢
+# falsefalseと表示される
+
+# 選択肢
+# truefalseと表示される
+
+
+#Memo
+#print a1.equal? a2 => false 
+
+
+
+
+
+#15
+# XXXXに記述した場合に実行結果が30以上になるプログラムを選択してください。
+
+a = [-1, 2, 3, 4, 5]
+b = (4..6).to_a
+
+puts XXXX
+# 選択肢
+a.inject(:+) + b.inject(:+) #=>28
+
+# 選択肢
+(a | b).inject(:-).abs + (a & b).inject(:+).abs #=> ✅ 30 
+
+# 選択肢
+(a | b).inject(:*) + b.inject(0) { |x, y| x + y ** 3 } #=> -315 
+
+# 選択肢
+((a || b).map(&:succ).inject(:*) * (a && b).inject(:*).abs2 + 29) #=> 29
+
+
+#Memo
+# abs メソッド
+# self の絶対値を返します。
+
+
+-12345.abs   # => 12345
+12345.abs    # => 12345
+-1234567890987654321.abs   # => 1234567890987654321
+
+# abs2 メソッド
+#自身の絶対値の 2 乗を返します。
+2.abs2    # => 4
+-2.abs2   # => 4
+2.0.abs2  # => 4
+-2.0.abs2 # => 4
+
+
+#succ　メソッド
+# self の「次の」文字列/数字を返します。
+# succ と逆の動作をするメソッドはありません。また、succ という名前の由来は successor です。
+p "aa".succ   # => "ab"
+
+# 繰り上がり
+p "99".succ   # => "100"
+p "a9".succ   # => "b0"
+p "Az".succ   # => "Ba"
+p "zz".succ   # => "aaa"
+p "-9".succ   # => "-10"
+p "9".succ    # => "10"
+p "09".succ   # => "10"
+
+# アルファベット・数字とそれ以外の混在
+p "1.9.9".succ # => # "2.0.0"
+
+# アルファベット・数字以外のみ
+p ".".succ     # => "/"
+p "\0".succ    # => "\001"
+p "\377".succ  # => "\001\000"
+
+
+(a & b) #=> [4, 5] 共通
+
+(a | b) #=> [-1, 2, 3, 4, 5, 6] unique elements from both arrays,
+
+(a && b) #=> [4, 5, 6] Since a is a non-empty array and therefore truthy, the expression (a && b) will evaluate to the value of b, which is [4, 5, 6].
+
+(a || b) #=> [-1, 2, 3, 4, 5] Since a is a non-empty array and therefore truthy, the expression (a || b) will evaluate to the value of a, which is [-1, 2, 3, 4, 5].
+
+
+
+
+
+
+
+#17
+# 次のコードを実行するとどうなりますか
+
+h = {a: 100, b: 200}
+p h.to_a
+# 選択肢
+[[:a, 100], [:b, 200]]#と表示される #=>  ✅
+
+# 選択肢
+[[:a, 200], [:b, 100]]#と表示される
+
+# 選択肢
+[[100, :a], [200, :b]]#と表示される
+
+# 選択肢
+[[100, :b], [200, :a]]#と表示される
+
+
+
+
+#18
+# 期待した出力結果になるようにXXXXに適切なコードを選べ
+
+d = Date.new(2015, 1, 5)
+puts d.strftime(XXXX)
+# 出力結果
+01/05/15
+# 選択肢
+"%x" #=> ✅  "%D"も同じ
+
+# 選択肢
+"%m/%d/%Y"
+
+# 選択肢
+"%m/%D/%y"
+
+# 選択肢
+"%M/%d/%y"
+
+
+
+
+
+
+
+
+
+#19
+# 次のコードを実行するとどうなりますか
+
+str = "1;2;3;4"
+p str.split(";")
+# 選択肢
+["1", "2", "3", "4"]#と表示される => ✅
+
+# 選択肢
+["4", "3", "2", "1"]#と表示される
+
+# 選択肢
+["1;2;3;4"]#と表示される
+
+# 選択肢
+# エラーが発生する
+
+
+#Memo
+# split メソッド
+# 第 1 引数 sep で指定されたセパレータによって文字列を limit 個まで分割し、
+# 結果を文字列の配列で返します。ブロックを指定すると、配列を返す代わりに分割した文字列でブロックを呼び出します。
+p "   a \t  b \n  c".split(/\s+/) # => ["", "a", "b", "c"]
+
+p "   a \t  b \n  c".split(nil)   # => ["a", "b", "c"]
+p "   a \t  b \n  c".split(' ')   # => ["a", "b", "c"]   # split(nil) と同じ
+p "   a \t  b \n  c".split        # => ["a", "b", "c"]   # split(nil) と同じ
+
+
+
+
+#20
+# 次のコードを実行するとどうなりますか
+
+str = "Liberty Fish   \r\n"
+str.chop
+p str
+# 選択肢
+"Liberty Fish \r\n"#と表示される
+
+# 選択肢
+"Liberty Fish "#と表示される
+
+# 選択肢
+"Liberty Fish"#と表示される => ✅
+
+# 選択肢
+"Liberty Fish \r"#と表示される
+
+
+# Memo
+# chopメソッド
+# 字列の最後の文字を取り除いた新しい文字列を生成して返します。ただし、文字列の終端が "\r\n" であればその 2 文字を取り除きます。
+
+p "string\n".chop    # => "string"
+p "string\r\n".chop  # => "string"
+p "string".chop      # => "strin"
+p "strin".chop       # => "stri"
+p "".chop            # => ""
