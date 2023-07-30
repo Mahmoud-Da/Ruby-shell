@@ -826,3 +826,184 @@ p "string\r\n".chop  # => "string"
 p "string".chop      # => "strin"
 p "strin".chop       # => "stri"
 p "".chop            # => ""
+
+
+
+
+
+
+
+
+
+
+#21
+# 次のコードの実行結果として正しいものを選択してください。
+
+IO.read("text.txt", 3, offset = 1)
+# [text.txtの内容]
+
+# REx
+# Silver
+# REx
+# Gold
+
+# 選択肢
+"REx\nSilver\nREx\n"#と表示される
+
+# 選択肢
+"Ex\n"#と表示される　　　=> ✅
+
+# 選択肢
+"REx"#と表示される
+
+# 選択肢
+"Silver\nREx\nGold\n"#と表示される
+
+
+
+# Memo
+# IO.read メソッド
+# length バイト読み込んで、その文字列を返します。
+
+# メソッド                      空のファイルに対して
+
+IO.read(空ファイル)           ""
+IO.read(空ファイル, length)   nil
+IO.readlines(空ファイル)      []
+IO.foreach(空ファイル)        何もしない
+
+
+# "text.txt": This is the filename or path to the file you want to read from. In this case, 
+# it's "text.txt", assuming there is a file named "text.txt" in the current working directory or the specified path.
+
+# 3: This is the number of bytes to read from the file. In this case, it's 3, which means the method will read 3 bytes from the file.
+  
+# offset = 1: This is an optional argument that specifies the starting position from where the reading should begin.
+# The default value is 0, but in this case, it's specified as 1, which means the reading will start from the second byte (since arrays in Ruby are zero-indexed).
+
+
+
+
+
+
+# 22
+# 以下のコード実行後の正しい表示結果を選べ。
+
+a = [1, 2, 3, 5, 8]
+b = [1, 3, 6, 7, 8]
+c = false || true ? true && false ? a | b : a & b : b ;
+p c
+# 選択肢
+エラーが発生する
+
+# 選択肢
+[1, 3, 8] => ✅
+
+# 選択肢
+[1, 3, 6, 7, 8]
+
+# 選択肢
+[1, 2, 3, 5, 8, 6, 7]
+
+# Memo
+# - false || true evaluates to true. This is because in a logical OR (||) operation, 
+# if the left operand is true, there's no need to evaluate the right operand because the overall result will always be true.
+
+# Next, we have true && false. This evaluates to false. In a logical AND (&&) operation,
+#  if the left operand is false, there's no need to evaluate the right operand because the overall result will always be false.
+
+# So, the ternary expression becomes: true ? false ? a | b : a & b : b. Since the condition true is true,
+#  the result will be false ? a | b : a & b.
+
+# Now, we have false ? a | b : a & b. Since the condition false is false, the result will be a & b.
+
+# Finally, we have a & b, which performs the set intersection operation on arrays a and b.
+#  It returns a new array containing elements that appear in both a and b.
+
+
+
+
+
+
+
+
+
+# 23
+# 次のコードを実行するとどうなりますか
+
+def hoge(n)
+  if n % 3 == 0
+    "hello"
+  elsif n % 5 == 0
+    "world"
+  end
+end
+
+str = ''
+str.concat hoge(3)
+str.concat hoge(5)
+
+puts str
+# 選択肢
+# エラーが発生する
+
+# 選択肢
+"helloworld"# と表示される => ✅
+
+# 選択肢
+"worldhello"# と表示される
+
+# 選択肢
+""# と表示される
+
+
+# Memo
+# concat メソッド
+# 配列 other を自身の末尾に破壊的に連結します。
+array = [1, 2]
+a     = [3, 4]
+array.concat a
+p array          # => [1, 2, 3, 4]
+p a              # => [3, 4]       # こちらは変わらない
+
+
+# other_arrays の要素を自身の末尾に破壊的に連結します。
+
+# [PARAM] other_arrays:
+# 自身と連結したい配列を指定します。
+
+[ "a", "b" ].concat( ["c", "d"] ) #=> [ "a", "b", "c", "d" ]
+[ "a" ].concat( ["b"], ["c", "d"] ) #=> [ "a", "b", "c", "d" ]
+[ "a" ].concat #=> [ "a" ]
+
+a = [ 1, 2, 3 ]
+a.concat( [ 4, 5 ] )
+a                                 #=> [ 1, 2, 3, 4, 5 ]
+
+a = [ 1, 2 ]
+a.concat(a, a)                    #=> [1, 2, 1, 2, 1, 2]
+
+
+
+
+
+
+
+
+#24
+# 次のコードを実行するとどうなりますか
+
+str = "Liberty Fish   \r\n"
+str.strip!
+p str
+# 選択肢
+"Liberty Fish \r\n"と表示される
+
+# 選択肢
+"Liberty Fish "と表示される
+
+# 選択肢
+"Liberty Fish"と表示される
+
+# 選択肢
+"Liberty Fish \r"と表示される
