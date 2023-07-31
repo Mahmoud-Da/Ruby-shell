@@ -120,7 +120,7 @@ p h
 
 #Memo 
 # Arrayの時
-# delete メソッドは一致する要素が削除されます。この時、一致する全ての要素が削除されることに注意してください。
+# delete Methodは一致する要素が削除されます。この時、一致する全ての要素が削除されることに注意してください。
 fruits = ["apple", "orange", "banana", "kiwi","banana"]
 p fruits
 # bananaを指定して削除
@@ -667,7 +667,7 @@ a.inject(:+) + b.inject(:+) #=>28
 
 
 #Memo
-# abs メソッド
+# abs Method
 # self の絶対値を返します。
 
 
@@ -675,7 +675,7 @@ a.inject(:+) + b.inject(:+) #=>28
 12345.abs    # => 12345
 -1234567890987654321.abs   # => 1234567890987654321
 
-# abs2 メソッド
+# abs2 Method
 #自身の絶対値の 2 乗を返します。
 2.abs2    # => 4
 -2.abs2   # => 4
@@ -786,7 +786,7 @@ p str.split(";")
 
 
 #Memo
-# split メソッド
+# split Method
 # 第 1 引数 sep で指定されたセパレータによって文字列を limit 個まで分割し、
 # 結果を文字列の配列で返します。ブロックを指定すると、配列を返す代わりに分割した文字列でブロックを呼び出します。
 p "   a \t  b \n  c".split(/\s+/) # => ["", "a", "b", "c"]
@@ -862,10 +862,10 @@ IO.read("text.txt", 3, offset = 1)
 
 
 # Memo
-# IO.read メソッド
+# IO.read Method
 # length バイト読み込んで、その文字列を返します。
 
-# メソッド                      空のファイルに対して
+# Method                      空のファイルに対して
 
 IO.read(空ファイル)           ""
 IO.read(空ファイル, length)   nil
@@ -958,7 +958,7 @@ puts str
 
 
 # Memo
-# concat メソッド
+# concat Method
 # 配列 other を自身の末尾に破壊的に連結します。
 array = [1, 2]
 a     = [3, 4]
@@ -1003,7 +1003,577 @@ p str
 "Liberty Fish "と表示される
 
 # 選択肢
-"Liberty Fish"と表示される
+"Liberty Fish"と表示される #=> ✅
 
 # 選択肢
 "Liberty Fish \r"と表示される
+
+
+#Memo
+# strip Method
+# 文字列先頭と末尾の空白文字を全て取り除いた文字列を生成して返します。空白文字の定義は " \t\r\n\f\v" です。また、
+# 文字列右側からは "\0" も取り除きますが、左側の "\0" は取り除きません。
+
+p "  abc  \r\n".strip    #=> "abc"
+p "abc\n".strip          #=> "abc"
+p "  abc".strip          #=> "abc"
+p "abc".strip            #=> "abc"
+p "  \0  abc  \0".strip  # => "\000  abc"   # 右側のみ "\0" も取り除く
+
+str = "\tabc\n"
+p str.strip              #=> "abc"
+p str                    #=> "\tabc\n" (元の文字列は変化しない)
+
+
+# strip! Method
+# 内容を変更した self を返します。ただし取り除く空白がなかったときは nil を返します。
+str = "  abc\r\n"
+p str.strip!     #=> "abc"
+p str            #=> "abc"
+
+str = "abc"
+p str.strip!     #=> nil
+p str            #=> "abc"
+
+str = "  \0  abc  \0"
+str.strip!
+p str            # => "\000  abc"   # 右側の "\0" のみ取り除かれる
+
+
+
+
+
+
+# 25
+# クラスの定義で正しいものを選んでください。
+
+# 選択肢
+class(MyModule) do
+
+end
+# 選択肢
+class(MyModule) {
+
+}
+# 選択肢
+module MyModule
+
+end
+# 選択肢  => ✅
+class MyModule  
+
+end
+
+
+
+
+
+
+
+
+#26
+# 次のプログラムの実行結果として正しいものを選択してください。
+
+class Foo
+  attr_accessor :a
+end
+
+foo = Foo.new
+foo.a = "REx"
+puts foo.a
+# 選択肢
+nilと表示される
+
+# 選択肢 => ✅
+RExと表示される
+
+# 選択肢
+NoMethodErrorが発生する
+
+# 選択肢
+NameErrorが発生する
+
+
+#Memo
+attr_accessor
+# インスタンス変数 name に対する読み取りメソッドと書き込みメソッドの両方を定義します。
+
+class User
+  attr_accessor :name # => [:name, :name=]
+  # 複数の名前を渡すこともできる
+  attr_accessor :id, :age # => [:id, :id=, :age, :age=]
+end
+
+# このメソッドで定義されるメソッドの定義は以下の通りです。
+def name
+  @name
+end
+def name=(val)
+  @name = val
+end
+
+# Rubyでは、以下のコードのように記述してクラス外部からインスタンス変数にアクセスしようとすると、「インスタンス変数にアクセスするためのメソッドが定義されていない」というエラーが発生します。
+
+# これにより、クラス外部からのインスタンス変数の参照や変更が出来ません。
+class User
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+end
+
+tanaka = User.new('田中太郎', 18)
+tanaka.name
+# => undefined method `name' for #<User:0x00007fd0f5880658 @name="田中太郎", @age=18> (NoMethodError)
+
+tanaka.age = 33
+# => undefined method `age=' for #<User:0x00007fc289084730 @name="田中太郎", @age=18> (NoMethodError)
+
+# しかし、以下のコードのようにattr_accessorメソッドを使うと、クラス外部からインスタンス変数へのアクセスが可能になります。
+class User
+  # 以下の記述でクラス外部から@name,@ageにアクセスが可能になる
+  attr_accessor :name, :age
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+end
+
+tanaka = User.new('田中太郎', 18)
+p tanaka.age #=> 18
+
+tanaka.age = 33
+p tanaka.age # => 33
+
+# このように、attr_accessorメソッドはインスタンス変数にアクセスするためのメソッドを裏側で定義してくれます。
+# そして、attr_accessorメソッドに指定されたインスタンス変数は、クラス外部から参照と変更の両方を行う事が出来ます。
+
+# - attr_readerメソッドは、インスタンス変数を呼び出すメソッドを定義する。    (Read-only)
+# - attr_writerメソッドは、インスタンス変数を書き込みメソッドを定義する。 (Write-only)
+# - attr_accessorメソッドは、インスタンス変数を読み書きメソッドを定義する。 (Read&Write)
+
+
+
+
+
+
+
+#27
+# 実行結果にある結果を得るようにXXXXに適したコードを選べ
+
+arr = XXXX
+arr.each do |i|
+  puts i
+end
+# 実行結果
+# apple
+# banana
+# orange
+
+# 選択肢 
+["apple", "banana", "orange"].flatten!
+
+# 選択肢 => ✅
+[["apple"],["banana"],["orange"]].flatten
+
+# 選択肢
+["apple", "banana", "orange"].reverse
+
+# 選択肢
+%|apple banana orange|
+
+
+
+
+# Memo
+# flatten Method
+# flatten は自身を再帰的に平坦化した配列を生成して返します。flatten! は自身を再帰的かつ破壊的に平坦化し、
+# 平坦化が行われた場合は self をそうでない場合は nil を返します。 lv が指定された場合、lv の深さまで再帰的に平坦化します。
+
+# 自身を再帰的に平坦化する例。
+a = [1, [2, 3, [4], 5]]
+p a.flatten                     #=> [1, 2, 3, 4, 5]
+p a                             #=> [1, [2, 3, [4], 5]]
+
+# 自身を破壊的に平坦化する例。
+a = [[[1, [2, 3]]]]
+p a.flatten!                    #=> [1, 2, 3]
+p a                             #=> [1, 2, 3]
+
+# 平坦化が行われない場合は nil を返す。
+p [1, 2, 3].flatten!            #=> nil
+
+# 平坦化の再帰の深さを指定する例。
+a = [ 1, 2, [3, [4, 5] ] ]
+a.flatten(1)              #=> [1, 2, 3, [4, 5]]
+
+
+
+
+
+
+
+
+#27
+# 以下の実行結果として正しいものを選択しなさい。
+
+p [1, 2, 3].inject{|x, y| x + y ** 2} rescue p $!
+p [1, 2, 3].inject(0){|x, y| x + y ** 2} rescue p $!   
+p [1, 2, 3].inject([]){|x, y| x << y ** 2} rescue p $!
+p [1, 2, 3].inject do|x, y| x + y ** 2 end rescue p $!   #=> I don't know 
+# 選択肢
+14
+14
+[1, 4, 9]
+14
+# 選択肢
+14
+0
+[]
+14
+# 選択肢
+14
+14
+[1, 4, 9]
+#<LocalJumpError: no block given>
+# 選択肢
+#<ArgumentError: wrong number of arguments (0 for 1)>
+14
+[1, 4, 9]
+#<LocalJumpError: no block given>
+
+
+# Memo
+begin
+  do_something # exception raised
+rescue
+  # handles error
+  retry  # restart from beginning
+end
+
+
+#本体の実行中に例外が発生した場合、rescue 節(複数指定できます)が与えられていれば例外を捕捉できます。発生した例外と一致する rescue 節が存在する時には rescue 節の本体が実行されます。
+# 発生した例外は $! を使って参照することができます。また、指定されていれば変数 evar にも $! と同様に発生した例外が格納されます。
+begin
+  raise "error message"
+rescue => evar
+  p $!
+  p evar
+end
+# => #<RuntimeError: error message>
+#    #<RuntimeError: error message>
+
+
+
+
+
+
+
+
+
+#29
+# 次のプログラムの実行結果として正しいものを選択してください。
+
+class Foo
+  attr_writer :a
+end
+
+foo = Foo.new
+foo.a = "REx"
+puts foo.a
+# 選択肢 => ✅
+# RExと表示される
+
+# 選択肢
+# nilと表示される
+
+# 選択肢
+# NoMethodErrorが発生する
+
+# 選択肢
+# NameErrorが発生する
+
+
+# Memo
+attr_writer(*name) -> [Symbol][permalink][rdoc][edit]
+# インスタンス変数 name への書き込みメソッド (name=) を定義します。
+
+# 例
+
+class User
+  attr_writer :name # => [:name=]
+  # 複数の名前を渡すこともできる
+  attr_writer :id, :age # => [:id=, :age=]
+end
+class User
+  attr_writer :name # => [:name=]
+  # 複数の名前を渡すこともできる
+  attr_writer :id, :age # => [:id=, :age=]
+end
+
+# このメソッドで定義されるメソッドの定義は以下の通りです。
+
+# 例
+
+def name=(val)
+  @name = val
+end
+
+
+
+#30
+# 次のコードを実行するとどうなりますか
+
+str = "1;2:3;4"
+p str.split(";|:")
+# 選択肢
+["1", "2", "3", "4"]#と表示される
+
+# 選択肢
+["4", "3", "2", "1"]#と表示される
+
+# 選択肢 => ⭕️✅⭕️
+["1;2:3;4"]#と表示される
+
+# 選択肢
+# エラーが発生する
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#31
+# 次のコードを実行するとどうなりますか
+
+str = "abcdefghijk"
+p str[1..3]
+# 選択肢
+"bcde"#が表示される
+
+# 選択肢 => ✅
+"bcd"#が表示される
+
+# 選択肢
+"bc"#が表示される
+
+# 選択肢
+"abc"#が表示される
+
+
+
+
+
+
+
+
+
+
+
+#32
+# 次のプログラムの実行結果として正しいものを選択してください。
+
+str = "aaabbcccddd"
+p str.scan("c")
+# 選択肢
+# trueと表示される
+
+# 選択肢 => ✅
+["c", "c", "c"]#と表示される
+
+# 選択肢
+# 5と表示される
+
+# 選択肢
+# NoMethodErrorが発生する
+
+
+
+# Memo
+# scan Method
+# self に対して pattern を繰り返しマッチし、マッチした部分文字列の配列を返します。
+
+
+p "foobar".scan(/../)               # => ["fo", "ob", "ar"]
+p "foobar".scan("o")                # => ["o", "o"]
+p "foobarbazfoobarbaz".scan(/ba./)  # => ["bar", "baz", "bar", "baz"]
+
+p "foobar".scan(/(.)/) # => [["f"], ["o"], ["o"], ["b"], ["a"], ["r"]]
+
+p "foobarbazfoobarbaz".scan(/(ba)(.)/) # => [["ba", "r"], ["ba", "z"], ["ba", "r"], ["ba", "z"]]
+
+
+# pattern が正規表現で括弧を含む場合は、括弧で括られたパターンにマッチした部分文字列の配列の配列を返します。
+"foobarbazfoobarbaz".scan(/ba./) {|s| p s }
+# "bar"
+# "baz"
+# "bar"
+# "baz"
+
+"foobarbazfoobarbaz".scan("ba") {|s| p s }
+# "ba"
+# "ba"
+# "ba"
+# "ba"
+
+"foobarbazfoobarbaz".scan(/(ba)(.)/) {|s| p s }
+# ["ba", "r"]
+# ["ba", "z"]
+# ["ba", "r"]
+# ["ba", "z"]
+
+
+
+
+
+
+# 33
+次のコードを実行するとどうなりますか
+
+str = "abcdefghijk"
+p str[2,4]
+# 選択肢
+"cde"
+
+# 選択肢 => ⭕️✅⭕️
+"cdef"
+
+# 選択肢
+"cdefg"
+
+# 選択肢
+"cd"
+
+
+
+
+
+
+
+
+#34
+# 次のプログラムを実行するとどうなりますか。
+
+x = 1
+y = 1.0
+
+print x == y
+print x.eql? y
+print x.equal? y
+print x.equal?(1)
+# 選択肢
+# truetruetruetrueと表示される
+
+# 選択肢
+# falsefalsefalsefalseと表示される
+
+# 選択肢
+# truefalsefalsefalseと表示される
+
+# 選択肢 => ✅
+# truefalsefalsetrueと表示される
+
+
+
+
+
+#35
+# 次のコードを実行するとどうなりますか
+
+a1 = "abc"
+a2 = 'abc'
+
+print a1.eql? a2
+print a1 == a2
+# 選択肢
+# falsetrueと表示される
+
+# 選択肢 => ✅
+# truetrueと表示される
+
+# 選択肢
+# falsefalseと表示される
+
+# 選択肢
+# truefalseと表示される
+
+
+
+
+
+
+
+#36
+# 次のコードの実行結果として正しいものを選択してください。
+
+x = %(a b)
+y = %W(c d)
+z = y << x
+
+p z
+# 選択肢
+# 実行時エラーになる
+
+# 選択肢
+["c", "d", "a", "b"]#と表示される
+
+# 選択肢 => ✅
+["c d", "a b"]#と表示される
+
+# 選択肢
+["c", "d", "a b"]#と表示される
+
+# Memo
+
+# In Ruby, %() is used to create a string with double-quoted style, and %W() is used to create an array of strings, with elements separated by whitespace. Let's break down the code step-by-step:
+
+# x = %(a b): This creates a string x with the value "a b".
+
+# y = %W(c d): This creates an array y with two string elements: "c" and "d".
+
+# z = y << x: This appends the string x ("a b") as a new element to the array y. So, after this operation, the array y will have three elements: "c", "d", and "a b". The variable z will also refer to the modified array y as << (shovel operator)
+# modifies the original array and returns the modified array.
+
+# result
+# x = "a b"
+# y = ["c", "d"]
+# z = ["c", "d", "a b"]
+
+
+#37
+# 次のプログラムを実行するとどうなりますか
+
+$val = 0
+
+class Count
+  def self.up
+    $val = $val + 1
+    $val == 3 ? true : false
+  end
+end
+
+[*1..10].any? do
+  Count.up
+end
+
+p $val
+# 選択肢
+# 10が表示される
+
+# 選択肢
+# 1が表示される
+
+# 選択肢
+# 0が表示される
+
+# 選択肢
+# 3が表示される
