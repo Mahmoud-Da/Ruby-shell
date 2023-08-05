@@ -1575,5 +1575,638 @@ p $val
 # 選択肢
 # 0が表示される
 
-# 選択肢
+# 選択肢 => ✅
 # 3が表示される
+
+
+# Memo
+[*1..10] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# any Method
+# すべての要素が偽である場合に false を返します。真である要素があれば、ただちに true を返します。
+require 'set'
+p Set[1, 2, 3].any? {|v| v > 3 }         # => false
+p Set[1, 2, 3].any? {|v| v > 1 }         # => true
+p Set[].any? {|v| v > 0 }                # => false
+p Set['ant', 'bear', 'cat'].any?(/d/)    # => false
+p Set[nil, true, 99].any?(Integer)       # => true
+p Set[nil, true, 99].any?                # => true
+p Set[].any?                             # => false
+
+# How the code is working
+# Now, let's follow the iterations:
+
+# Iteration 1: 
+# $val was 0, and the up method increments it to 1. The method returns false.
+
+# Iteration 2: 
+# $val was 1, and the up method increments it to 2. The method returns false.
+
+# Iteration 3: 
+# $val was 2, and the up method increments it to 3. The method returns true.
+
+# After the third iteration, the any? method stops iterating because it has found a true value, so the final result is that $val is equal to 3.
+
+# Therefore, when you execute p $val, it will output 3.
+
+
+
+# OtherMemo
+# why we initialize a value
+
+# In many programming scenarios, it's essential to initialize variables before using them.
+#  Initializing a variable means assigning it an initial value before any operations are performed on it.
+#  Here are a few reasons why initializing variables is important:
+
+# Avoiding Unpredictable Behavior: If a variable is not initialized,
+#  its initial value could be whatever happened to be stored in that memory location.
+#  This can lead to unpredictable behavior in the program and cause bugs that are hard to trace.
+
+# Preventing Garbage Values: If a variable is not explicitly initialized, 
+# it may contain garbage values (leftover data from the memory location used for that variable).
+#  Using variables with garbage values can produce incorrect or unexpected results.
+
+# Ensuring Consistency: By initializing a variable,
+# you set a known and consistent starting point for its value.
+#  This makes it easier to reason about the program's behavior and expected outcomes.
+
+# Safer Operations: Depending on the programming language,
+# some operations on uninitialized variables may result in runtime errors or exceptions.
+#  Initializing variables ensures that these operations can be safely performed.
+
+# Explicit Intent: Initializing variables clearly communicates 
+# the programmer's intention to use that variable and gives a specific starting value,
+#  which can make the code more readable and maintainable.
+
+# Default Values: In some cases, initializing variables to default values is necessary to ensure correct behavior, 
+# especially in languages that don't automatically set default values for variables.
+
+# In the given code, $val = 0 initializes the global variable $val with the value 0.
+#  This is important because the subsequent code relies on this variable to be initialized 
+# before the Count.up method is called multiple times in the any? method. If $val were not initialized, its value could be anything, leading to unpredictable behavior and possibly incorrect results. Initializing $val with 0 ensures that it starts with a known value
+#  before any further operations are performed on it.
+
+
+
+
+
+
+#38
+# 次のコードを実行するとどうなりますか
+
+a = [1,2,3,4]
+p a.slice(2,1)
+# 選択肢
+[1]#と表示される
+
+# 選択肢
+[2]#と表示される
+
+# 選択肢 => ✅
+[3]#と表示される
+
+# 選択肢
+[4]#と表示される
+
+# Memo
+# slice Method
+# 指定された自身の要素を返します。Array#[] と同じです。
+
+# 要素のインデックスを整数で指定します。Array#[] と同じです。
+p [0, 1, 2].slice(1)    #=> 1
+p [0, 1, 2].slice(2)    #=> 2
+p [0, 1, 2].slice(10)   #=> nil
+
+
+# 指定された自身の部分配列を返します。Array#[] と同じです。 (first paramete:starting-index, second: length)
+p [0, 1, 2].slice(0, 2)    #=> [0, 1]
+p [0, 1, 2].slice(2, 1)    #=> [2]
+p [0, 1, 2].slice(2..3)    #=> [2]
+p [0, 1, 2].slice(10, 1)   #=> nil
+
+
+# The slice method is used to extract a portion of an array based on a given starting index and length. 
+# In this case, a.slice(2, 1) is called, which means we want to extract a portion of the array a starting from
+#  index 2 and with a length of 1.
+
+# Let's break it down:
+  
+# Index 2 corresponds to the element 3 in the array because arrays are zero-indexed (i.e., the first element has an index of 0).
+  
+# The length specified is 1, so we want to extract a single element starting from index 2.
+
+
+
+
+
+
+
+
+#39
+# 次のコードを実行するとどうなりますか
+
+str = "1;2:3;4"
+p str.split(/;|:/)
+# 選択
+# 選択肢 => ✅
+["1", "2", "3", "4"]#と表示される
+
+# 選択肢
+["4", "3", "2", "1"]#と表示される
+
+# 選択肢
+["1;2:3;4"]#と表示される
+
+# 選択肢
+# エラーが発生する
+
+
+
+
+
+
+
+
+
+
+
+
+
+#40
+# のコードの実行結果として正しいものを選択してください。
+
+class Foo
+  attr_accessor :foo
+
+  def initialize
+    @foo = 0
+  end
+end
+
+foo1 = Foo.new
+foo1.foo += 1
+foo2 = Foo.new
+foo2.foo += 2
+
+puts "#{foo1.foo}/#{foo2.foo}"
+# 選択肢
+3/3#と表示される
+
+# 選択肢
+NoMethodErrorが発生する
+
+# 選択肢 => ✅
+1/2#と表示される
+
+# 選択肢
+1/3#と表示される
+
+
+
+
+
+
+
+
+
+
+
+
+
+#41
+# 以下の変数についての説明のうち、⭕️間違っているもの⭕️をすべて選択してください
+
+# 選択肢 => ❌
+# グローバル変数は@@から始まる
+
+# 選択肢 => ❌
+# クラス変数は$から始まる
+
+# 選択肢
+# インスタンス変数は@から始まる
+
+# 選択肢
+# 定数は、アルファベット大文字で始まる
+
+
+
+
+
+
+
+
+
+#42
+
+# Hashクラスについて適切な記述を選びなさい（複数選択）
+
+# 選択肢  => ✅
+# Hash[]で空のHashオブジェクトを生成できる
+
+# 選択肢
+# Hash()で空のHashオブジェクトを生成できる
+
+# 選択肢
+# revertでキーと値を入れ替えることができる
+
+# 選択肢  => ✅
+# fetchでキーにマッチした値を取得できる
+
+
+# Memo
+# revert Method
+# reverse は自身の要素を逆順に並べた新しい配列を生成して返します。 reverse! は自身を破壊的に並べ替えます。 reverse! は self を返します。
+
+a = ["a", 2, true]
+p a.reverse         #=> [true, 2, "a"]
+p a                 #=> ["a", 2, true] (変化なし)
+
+a = ["a", 2, true]
+p a.reverse!        #=> [true, 2, "a"]
+p a                 #=> [true, 2, "a"]
+
+
+# fetch Method
+# key に関連づけられた値を返します。該当するキーが登録されていない時には、
+# 引数 default が与えられていればその値を、ブロックが与えられていればそのブロックを評価した値を返します。
+# fetchはハッシュ自身にデフォルト値が設定されていても単に無視します（挙動に変化がありません）。
+
+
+h = {one: nil}
+p h[:one],h[:two]                        #=> nil,nil これではキーが存在するのか判別できない。
+p h.fetch(:one)                          #=> nil
+p h.fetch(:two)                          # エラー key not found (KeyError)
+p h.fetch(:two,"error")                  #=> "error"
+p h.fetch(:two){|key|"#{key} not exist"} #=> "two not exist"
+p h.fetch(:two, "error"){|key|           #=> "two not exist"
+    "#{key} not exist"                   #  warning: block supersedes default value argument
+  }                                      #  警告が表示される。
+
+h.default = "default"
+p h.fetch(:two)
+
+
+
+#43
+# Arrayクラスでfind_allと同じ動作をするメソッドを選びなさい
+
+# 選択肢 => ✅
+# select
+
+# 選択肢
+# detect
+
+# 選択肢
+# collect
+
+# 選択肢
+# map
+
+
+#Memo
+# detect Method
+find(ifnone = nil) -> Enumerator[permalink][rdoc][edit]
+detect(ifnone = nil) -> Enumerator
+find(ifnone = nil) {|item| ... } -> object
+detect(ifnone = nil) {|item| ... } -> object
+
+# 要素に対してブロックを評価した値が真になった最初の要素を返します。
+
+# 真になる要素が見つからず、ifnone も指定されていないときは nil を返します。
+# 真になる要素が見つからず、ifnone が指定されているときは ifnone を call した結果を返します。
+
+# 最初の 3 の倍数を探す
+p [1, 2, 3, 4, 5].find {|i| i % 3 == 0 }   # => 3
+p [2, 2, 2, 2, 2].find {|i| i % 3 == 0 }   # => nil
+
+# ifnone の使用例
+ifnone = proc { raise ArgumentError, "item not found" }
+p [1, 2, 3, 4, 5].find(ifnone) {|i| i % 7 == 0 }
+    # ArgumentError: item not found
+
+
+#select Method
+select -> Enumerator[permalink][rdoc][edit]
+filter -> Enumerator
+select {|item| ... } -> [object]
+filter {|item| ... } -> [object]
+# 各要素に対してブロックを評価した値が真であった要素を全て含む配列を返します。真になる要素がひとつもなかった場合は空の配列を返します。
+
+# ブロックを省略した場合は Enumerator を返します。
+
+例
+
+[1,2,3,4,5].select                      # => #<Enumerator: [1, 2, 3, 4, 5]:select>
+[1,2,3,4,5].select { |num| num.even? }  # => [2, 4]
+
+
+
+# Enumerator, specifically, is a class in Ruby that allows both types of iterations – external and internal.
+#  Internal iteration refers to the form of iteration which is controlled by the class in question, 
+# while external iteration means that the environment or the client controls the way iteration is performed
+# for better understanding
+# https://bootrails.com/blog/ruby-enumerator-what-why-how/
+
+
+
+
+#44
+# 次のプログラムの期待値を得られるように正しいメソッドを選択肢から選んでください。
+
+hash = {price: 100, order_code: 200, order_date: "2018/09/20", tax: 0.8}
+
+p hash.__(1)__
+# 期待値
+
+[100, 0.8]
+# 選択肢
+key(:price, :tax)
+# 選択肢
+values(:price, :tax)
+# 選択肢 => ✅
+values_at(:price, :tax)
+# 選択肢
+[](:price, :tax)
+
+
+
+
+# Memo
+# key Method
+# 全キーの配列を返します。
+
+
+h1 = { "a" => 100, 2 => ["some"], :c => "c" }
+p h1.keys 
+
+
+#value Method
+# ハッシュの全値の配列を返します。
+
+h1 = { "a" => 100, 2 => ["some"], :c => "c" }
+p h1.values  
+
+
+#value_at Method
+# 引数で指定されたキーに対応する値の配列を返します。
+
+# キーに対応する要素がなければデフォルト値が使用されます。
+ 
+
+h = {1=>"a", 2=>"b", 3=>"c"}
+
+p h.values_at(1,3,4)               #=> ["a", "c", nil]
+# [h[1], h[3] ,h[4]] と同じ
+
+
+
+
+
+
+
+
+
+
+
+
+# 45
+# 次のコードを実行するとどうなりますか
+h = {a: 100}
+h.each {|p|
+  p p.class
+}
+# 選択肢
+Arrayと表示される
+
+# 選択肢
+Hashと表示される
+
+# 選択肢
+Symbolと表示される
+
+# 選択肢
+Fixnumと表示される
+
+
+# Memo
+# IDk know the class of the key of hash
+
+
+# Fixnum Class:
+# In Ruby versions before 2.4, Fixnum was a class representing integer numbers.
+#  It was used to represent integers within a specific range.
+  # Integers that fell within this range were instances of the Fixnum class,
+  # while integers outside this range were represented by the Bignum class.
+
+# However, starting from Ruby 2.4, the Fixnum and Bignum classes were unified into a single class called Integer.
+#  This change was made to improve memory efficiency and simplify the handling of integers in Ruby.
+
+# Here's a brief overview of Fixnum (before Ruby 2.4):
+
+# Fixnum is a subclass of Integer.
+# Fixnum holds Integer values that can be represented in a native machine word (minus 1 bit).
+#  If any operation on a Fixnum exceeds this range, the value is automatically converted to a Bignum.
+# Fixnum objects have immediate value. This means that when they are assigned or passed as parameters,
+#  the actual object is passed, rather than a reference to that object. Assignment does not alias Fixnum objects.
+#   There is effectively only one Fixnum object instance for any given integer value, so, for example, you cannot add a singleton method to a Fixnum.
+
+
+# besides
+# It represents integer numbers within a specific range that can be efficiently stored in memory.
+# In older versions of Ruby (before 2.4), integers within the range -2^30 to 2^30-1 were represented as Fixnum.
+# Operations on Fixnum objects are generally faster and use less memory compared to Bignum objects.
+# If a mathematical operation exceeds the range of Fixnum, the result will be automatically promoted to a Bignum object.
+# However, as of Ruby 2.4 and later versions, Fixnum and Bignum are no longer separate classes,
+# and all integer numbers are now represented by the unified Integer class. This change means that Ruby automatically manages the internal representation of integers,
+# and developers do not need to be concerned about the internal class distinction.
+
+# Here's an example of using Fixnum (before Ruby 2.4):
+
+x = 42
+puts x.class  # Output: Fixnum
+# And in Ruby 2.4 and later versions:
+
+x = 42
+puts x.class  # Output: Integer
+# In modern Ruby versions, the class will be Integer instead of Fixnum.
+
+
+
+
+
+
+
+#46
+# 次のコード実行するとどうなりますか
+
+puts Time.now + 3600
+# 選択肢 
+# 3600分後の時間を出力する
+
+# 選択肢
+# 36秒後の時間を出力する
+
+# 選択肢 => ✅
+# 60分後の時間を出力する
+
+# 選択肢
+# 6分後の時間を出力する
+
+
+
+
+
+
+
+
+
+
+
+#47
+# 実行結果にある結果を得るように選択肢からコードを選べ
+
+#実行結果
+["A", "a", "a"]
+# 選択肢
+arr = Array(3){"a"}
+arr.first.upcase
+p arr
+# 選択肢
+arr = Array(3){"a"}
+arr.first.upcase!
+p arr
+# 選択肢
+arr = Array.new(3){"a"}
+arr.first.upcase
+p arr
+# 選択肢
+arr = Array.new(3){"a"}
+arr.first.upcase!
+p arr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#48
+# 次のコードを実行するとどうなりますか
+
+arr = [1,2].product([3,4])
+p arr
+# 選択
+# 選択肢  => ✅
+[[1, 3], [1, 4], [2, 3], [2, 4]]と表示される
+
+# 選択肢
+[[1, 3], [2, 4]]と表示される
+
+# 選択肢
+[1, 2]と表示される
+
+# 選択肢
+[[1, 1, 2, 2], [3, 4, 3, 4]]と表示される
+
+
+#Memo
+#product Method
+# レシーバの配列と引数で与えられた配列（複数可）のそれぞれから要素を1 個ずつとって配列とし，それらのすべての配列を要素とする配列を返します。
+
+# 返される配列の長さは，レシーバと引数で与えられた配列の長さのすべての積になります。
+[1,2,3].product([4,5])     # => [[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]]
+[1,2].product([1,2])       # => [[1,1],[1,2],[2,1],[2,2]]
+[1,2].product([3,4],[5,6]) # => [[1,3,5],[1,3,6],[1,4,5],[1,4,6],
+                           #     [2,3,5],[2,3,6],[2,4,5],[2,4,6]]
+[1,2].product()            # => [[1],[2]]
+[1,2].product([])          # => []
+
+
+
+
+
+
+#49
+# 次のプログラムを#実行して同じ結果が得られるプログラムを選んでください。
+
+klass = Class.new
+
+hash = {klass => 100}
+
+puts hash[klass]
+
+# 選択肢
+klass = Class.new
+
+hash = {klass: 100}
+
+puts hash[klass]
+
+# 選択肢 => ✅
+klass = Class.new
+
+hash = {}
+hash.store(klass, 100)
+
+puts hash[klass]
+
+# 選択肢
+klass = Class.new
+
+hash = {}
+hash.store(:klass, 100)
+
+puts hash[klass]
+
+# 選択肢 => ✅
+klass = Class.new
+
+hash = Hash[klass, 100]
+
+puts hash[klass]
+
+#Memo
+# store Method
+# self[key] = value[permalink][rdoc][edit]
+# store(key, value) -> object
+# key に対して value を関連づけます。value を返します。
+
+# [PARAM] key:
+# キーを指定します。
+# [PARAM] value:
+# 値を指定します。
+# 例
+#1
+h = {}
+
+h[:key] = "value"
+p h #=>{:key => "value"}
+
+#2
+h = {}
+h.store(:key, "value")
+p h #=> {:key=>"value"}
+
+
+
+#50
+a = [1, 2, 3, 4]
+p a[1..2]
+# 選択肢
+[1, 2]#と表示される
+
+# 選択肢
+[1, 2, 3]#と表示される
+
+# 選択肢
+[2, 3, 4]#と表示される
+
+# 選択肢  => ✅
+[2, 3]#と表示される
