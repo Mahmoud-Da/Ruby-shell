@@ -1083,3 +1083,698 @@ p a
 [1, 10, 10, 10, 10, 10]と表示される
 
 
+
+
+#27
+次のプログラムの説明で正しい選択肢を選んでください。
+
+str = <<EOS
+よりニッチに。よりユニークに。
+  IT市場はもちろん、ヘルスケア・医療・介護など
+    次世代市場における企業や生活者のユーザビリティを向上させる
+      サービス、ソフトウェアを開発しています。
+    #{1 + 1}
+EOS
+puts str
+# 選択肢
+式展開が行われ、スペース及び改行は正しく評価される。
+
+よりニッチに。よりユニークに。
+  IT市場はもちろん、ヘルスケア・医療・介護など
+    次世代市場における企業や生活者のユーザビリティを向上させる
+      サービス、ソフトウェアを開発しています。
+    2
+# 選択肢
+式展開が行われず、スペース及び改行は正しく評価される。
+
+よりニッチに。よりユニークに。
+  IT市場はもちろん、ヘルスケア・医療・介護など
+    次世代市場における企業や生活者のユーザビリティを向上させる
+      サービス、ソフトウェアを開発しています。
+    #{1 + 1}
+# 選択肢
+式展開が行われるが、スペース及び改行は評価されない。
+
+よりニッチに。よりユニークに。IT市場はもちろん、ヘルスケア・医療・介護など次世代市場における企業や生活者のユーザビリティを向上させるサービス、ソフトウェアを開発しています。2
+# 選択肢
+式展開が行われず、スペース及び改行は評価されない。
+
+よりニッチに。よりユニークに。IT市場はもちろん、ヘルスケア・医療・介護など次世代市場における企業や生活者のユーザビリティを向上させるサービス、ソフトウェアを開発しています。#{1 + 1}
+
+
+
+
+
+#28
+class Foo
+  attr_reader :a
+
+  def initialize
+    @a = "REx"
+  end
+end
+
+foo = Foo.new
+puts foo.a
+# 選択肢
+RExと表示される
+
+# 選択肢
+nilと表示される
+
+# 選択肢
+NoMethodErrorが発生する
+
+# 選択肢
+NameErrorが発生する
+
+
+
+
+
+
+
+
+#29
+Hashクラスについて適切な記述を選びなさい（複数選択）
+
+# 選択肢
+member?でハッシュがキーをもつか判断できる
+
+# 選択肢
+to_aでハッシュから配列を生成できる
+
+# 選択肢
+updateは破壊的メソッドである
+
+# 選択肢
+clearの戻り値は空のハッシュ
+
+# Memo
+# member Method
+# 与えられたタスク名が自身に含まれる場合は真を返します。そうでない場合は偽を返します。
+# task default: :test_rake_app
+# task :test_rake_app do
+#   invocation_chain = Rake::InvocationChain.new("task_a", Rake::InvocationChain::EMPTY)
+#   invocation_chain.member?("task_a") # => true
+#   invocation_chain.member?("task_b") # => false
+# end
+
+
+
+
+#30
+arr = XXXX
+arr.each do |i|
+  puts i
+end
+# 実行結果
+apple
+banana
+orange
+# 選択肢
+["apple", "banana", "orange"].flatten!
+
+# 選択肢
+[["apple"],["banana"],["orange"]].flatten
+
+# 選択肢
+["apple", "banana", "orange"].reverse
+
+# 選択肢
+%|apple banana orange|
+
+
+#31
+a = [1, 2, 3, 4, 5]
+
+XXXX
+実行結果
+
+1
+2
+3
+4
+5
+# 選択肢
+a.each { |n| puts n }
+# 選択肢
+a.each_index { |n| puts n }
+# 選択肢
+a.each_with_index { |n, i| puts n }
+# 選択肢
+a.each_with_index { |n, i| puts i }
+
+
+
+
+# Memo
+# each_index Method
+# 各要素のインデックスに対してブロックを評価します。
+
+# 以下と同じです。
+
+# 例
+
+(0 ... ary.size).each do |index|
+  # ....
+end
+
+[1, 2, 3, 4, 5].each_index { |n| puts n } #=> 0, 1, 2, 3, 4
+
+
+# each_with_index
+# 要素とそのインデックスをブロックに渡して繰り返します。
+[5, 10, 15].each_with_index do |n, idx|
+  p [n, idx]
+end
+# => [5, 0]
+#    [10, 1]
+#    [15, 2]
+
+
+
+
+
+
+
+#32
+# 次のプログラムと実行結果として正しいものを選択してください。
+
+(x, y), z = 1, 2, 3
+
+p z
+# 選択肢
+[2, 3]と表示される
+
+# 選択肢
+2と表示される
+
+# 選択肢
+3と表示される
+
+# 選択肢
+ArgumentErrorが発生する
+
+
+
+# Memo
+# In this case, the valu
+(x, y) = 1
+z = 2
+
+# Separating Values
+Ex:
+x, y = 1, 2 #=> x = 1 , y = 2
+
+
+
+
+
+
+
+
+#33
+# 次のコードの実行結果として正しいものを選択してください。
+
+("a".."d").each_with_index do |v, i|
+  puts "#{i} / #{v}"
+end
+# 選択肢
+1 / a
+2 / b
+3 / c
+4 / d
+# と表示される
+
+# 選択肢
+a / 0
+b / 1
+c / 2
+d / 3
+# と表示される
+
+# 選択肢
+0 / a
+1 / b
+2 / c
+3 / d
+# と表示される
+
+# 選択肢
+a / 1
+b / 2
+c / 3
+d / 4
+# と表示される
+
+
+
+
+#34
+Hashクラスについて適切な記述を選びなさい（複数選択）
+
+# 選択肢
+Hash[]で空のHashオブジェクトを生成できる
+
+# 選択肢
+Hash()で空のHashオブジェクトを生成できる
+
+# 選択肢
+revertでキーと値を入れ替えることができる
+
+# 選択肢
+fetchでキーにマッチした値を取得できる
+
+
+
+
+
+
+
+
+
+
+
+#35
+# 次のコードを実行するとどうなりますか
+
+h = {a: 100, b: 100}
+puts h.invert
+# 選択肢
+{100=>:a}#と表示される
+
+# 選択肢
+{100=>:b}#と表示される
+
+# 選択肢
+[[100, :a],[100, :b]]#と表示される
+
+# 選択肢
+[[100, :b]]#と表示される
+
+
+
+
+
+
+
+
+
+#36
+# 次のコードを実行するとどうなりますか
+
+p [1,2,3,4].map { |e| e * e }
+# 選択肢
+[1, 4, 9, 16]
+
+# 選択肢
+#<Enumerator: [1, 2, 3, 4]:map>
+
+# 選択肢
+nil
+
+# 選択肢
+[1, 2, 3, 4]
+
+
+
+
+
+
+
+
+
+
+#37
+Date.today.strftime("%F")と同じ動作をするコードを選びなさい
+
+# 選択肢
+Date.today.strftime("%y-%m-%d")
+
+# 選択肢
+Date.today.strftime("%y/%m/%d")
+
+# 選択肢
+Date.today.strftime("%Y/%m/%d")
+
+# 選択肢
+Date.today.strftime("%Y-%m-%d")
+
+
+
+# 39
+# 以下の変数についての説明のうち、間違っているものをすべて選択してください
+
+# 選択肢
+グローバル変数は$から始まる
+
+# 選択肢
+クラス変数は@@から始まる
+
+# 選択肢
+インスタンス変数は*から始まる
+
+# 選択肢
+定数は、アルファベット大文字で始まる
+
+
+
+
+
+
+
+#40
+# 次のコードの実行結果として正しいものを選択してください。
+
+IO.read("text.txt", 3, offset = 1)
+[text.txtの内容]
+
+REx
+Silver
+REx
+Gold
+
+# 選択肢
+"REx\nSilver\nREx\n"と表示される
+
+# 選択肢
+"Ex\n"と表示される
+
+# 選択肢
+"REx"と表示される
+
+# 選択肢
+"Silver\nREx\nGold\n"と表示される
+
+
+
+
+
+
+
+#41
+# 次のコードを実行するとどうなりますか
+
+s = ["one", "two", "three"]
+s.shift
+s.shift
+s.unshift("dummy")
+s.push "four"
+p s
+# 選択肢
+["one", "two", "three"]#と表示される
+
+# 選択肢
+["dummy", "three", "four"]#と表示される
+
+# 選択肢
+["dummy", "one", "two", "three"]#と表示される
+
+# 選択肢
+["one", "two", "three", "four"]#と表示される
+
+
+
+
+
+
+
+
+
+
+
+#42
+# 次のプログラムと実行結果として正しいものを選択してください。
+
+v1 = false || 1 + 1 == 1.to_i
+
+puts v1
+# 選択肢
+trueと表示される
+
+# 選択肢
+falseと表示される
+
+# 選択肢
+1と表示される
+
+# 選択肢
+2と表示される
+
+
+
+
+
+
+
+
+
+#43
+# 次のコードのXXXXに記述するとエラーが発生するコードはどれですか
+puts XXXX
+# 選択肢
+"80"
+
+# 選択肢
+0xFF
+
+# 選択肢
+7.to_s(3)
+
+# 選択肢
+"7".binary
+
+
+# Memo
+# When you have the code puts 7.to_s(3), it means you want to take the number 7 and change it into a special way of writing numbers, like a secret code. This special way is called "base 3".
+
+
+# In normal numbers, we use ten different symbols (0 to 9) to represent all numbers. 
+# But in base 3, we only use three symbols (0, 1, and 2).
+#  So, when we change the number 7 into base 3, it becomes 21. This is like saying "two threes and one more."
+
+#
+7.to_s(3) #=> 7 base 3
+7.to_s(5) #=> 7 base 5
+
+
+#To convert 7 to base 5, we'll use a similar process as described earlier:
+
+# 7 ÷ 5 = 1 with a remainder of 2 (This means we have 1 group of 5 and 2 left over).
+# 1 ÷ 5 = 0 with a remainder of 1 (This means we have 0 groups of 5 and 1 left over).
+# If we read the remainders from bottom to top, we get the base 5 representation: 12.
+
+# So, in base 5, the decimal number 7 is represented as 12.
+
+# When you run the code 7.to_s(5) in Ruby, it will return the string "12".
+
+
+
+
+
+#44
+# KeyErrorとStopIterationを捕捉するプログラムを選択肢から選んでください。
+
+# 選択肢 #=> ✅
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue KeyError
+
+rescue StopIteration
+
+end
+# 選択肢 #=> ✅ 
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue KeyError, StopIteration
+
+end
+# 選択肢
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue [KeyError, StopIteration]
+
+end
+# 選択肢 #=> ✅
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue *[KeyError, StopIteration]
+
+end
+
+
+
+
+
+
+
+#45
+h = {a: 100, b: 200}
+h.delete(:a)
+p h
+# 選択肢
+{:a=>100, :b=>200}と表示される
+
+# 選択肢
+{:a=>nil, :b=>200}と表示される
+
+# 選択肢
+{:b=>200}と表示される
+
+# 選択肢
+エラーが発生する
+
+
+
+
+
+
+
+
+
+
+
+
+
+#46
+# 次のプログラムを実行して同じ結果が得られるプログラムを選んでください。
+
+klass = Class.new
+
+hash = {klass => 100}
+
+puts hash[klass]
+# 選択
+# 選択肢
+klass = Class.new
+
+hash = {klass: 100}
+
+puts hash[klass]
+# 選択肢
+klass = Class.new
+
+hash = {}
+hash.store(klass, 100)
+
+puts hash[klass]
+# 選択肢
+klass = Class.new
+
+hash = {}
+hash.store(:klass, 100)
+
+puts hash[klass]
+# 選択肢
+klass = Class.new
+
+hash = Hash[klass, 100]
+
+puts hash[klass]
+
+
+
+
+
+
+
+#47
+Fileクラスのクラスメソッドではないものを選択してください。
+
+# 選択肢
+File.dirname
+# 選択肢
+File.close
+# 選択肢
+File.home
+# 選択肢
+File.pwd
+
+
+# Memo
+dirname Method
+# filename の一番後ろのスラッシュより前を文字列として返します。スラッシュを含まないファイル名に対しては "."(カレントディレクトリ)を返します。
+
+
+p File.dirname("dir/file.ext")    # => "dir"
+p File.dirname("file.ext")        # => "."
+
+
+#File.close, File.home, and File.pwd, are not valid as standalone methods in Ruby. 
+# File.close is not a method for closing files; you would typically call file.close on an instance of the File class to close a file.
+#  File.home is not a standard method in Ruby's File module, and File.pwd is a valid method to get the current working directory
+#  using Dir.pwd (since Dir is the class/module for working with directories in Ruby).
+
+
+
+
+#48
+# 次のプログラムを実行するとどうなりますか。
+
+x = 1
+y = 1.0
+
+print x == y
+print x.eql? y
+print x.equal? y
+print x.equal?(1)
+# 選択肢
+truetruetruetrueと表示される
+
+# 選択肢
+falsefalsefalsefalseと表示される
+
+# 選択肢
+truefalsefalsefalseと表示される
+
+# 選択肢
+truefalsefalsetrueと表示される
+
+
+
+#49
+# 次のプログラムの実行結果として正しいものを選択してください。
+
+str = "aaabbcccddd"
+p str.scan("c")
+# 選択肢
+trueと表示される
+
+# 選択肢
+["c", "c", "c"]と表示される
+
+# 選択肢
+5と表示される
+
+# 選択肢
+NoMethodErrorが発生する
+
+
+
+
+
+
+
+#50
+# 次のプログラムの実行結果として正しいものを選択してください。
+
+class Foo
+  attr_writer :a
+end
+
+foo = Foo.new
+foo.a = "REx"
+puts foo.a
+# 選択肢
+RExと表示される
+
+# 選択肢
+nilと表示される
+
+# 選択肢
+NoMethodErrorが発生する
+
+# 選択肢
+NameErrorが発生する
+
