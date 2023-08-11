@@ -397,20 +397,20 @@ Hashと表示される
 #7
 # 実行してもエラーにならないコードを選べ
 
-# 選択肢
+# 選択肢 #=>  ✅
 def bar(n)
   puts n
 end
 
 bar 5
-# 選択肢
+# 選択肢 #=>  ✅
 def bar(n)
   puts n
 end
 
 bar (10)
 選択
-# 選択肢
+# 選択肢 #=>  ✅
 def bar(*n1, n2)
   puts n1
   puts n2
@@ -423,7 +423,7 @@ def bar(*n1, n2, *n3)
   puts n2
 end
 
-bar 5, 6, 7, 8
+bar 5, 6, 7, 8  #=> unexpected * (SyntaxError) 
 
 
 
