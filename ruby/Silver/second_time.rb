@@ -999,7 +999,7 @@ p hash[:a]
 # 選択肢
 proc = hash.default_proc
 p proc.call(1, 2) 
-# 選択肢
+# 選択肢 #=> ✅
 hash.default_proc = nil
 p hash[:a]
 
@@ -1026,7 +1026,28 @@ p h.default(:some) #=> nil
 p h                #=> {}
 
 
+# 問題のプログラムではHash#newメソッドの引数にブロックを指定しています。
 
+# ブロックでは、キーが存在しない場合に例外KeyErrorを返すよう設定されています。
+
+# 下記のようにHashに存在しないキー:aを参照しようとすると例外が発生します。
+
+hash[:a] # => KeyError (Key a does not exist in hash {})
+エラーにならない場合
+
+hash[:a] = 1 # 参照先であるhash[:a]に値が代入されている場合例外は発生しない
+hash.default = nil # デフォルト値をnilに更新しているので例外は発生しない
+hash.default_proc = nil　# デフォルト値をnilに更新しているので例外は発生しない
+エラーが発生する場合
+
+Hash#default_procメソッドはHashオブジェクトに設定されたブロック形式のデフォルト値を返します。
+
+Hash#default_procメソッドがデフォルトのProcを持たない場合はnilを返します。
+
+proc = hash.default_proc # ここでデフォルト値に設定されたブロックの内容を参照しそれを変数procに代入しています
+
+# callメソッドで意図的にブロックを呼び出し設定された例外を発生させています
+proc.call(1, 2) # => KeyError (Key 2 does not exist in hash 1)
 
 
 

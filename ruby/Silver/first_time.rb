@@ -714,9 +714,9 @@ p "\377".succ  # => "\001\000"
 
 (a || b) #=> [-1, 2, 3, 4, 5] Since a is a non-empty array and therefore truthy, the expression (a || b) will evaluate to the value of a, which is [-1, 2, 3, 4, 5].
 
+(a - b) #=> [-1, 2, 3] Performs an array difference operation, which returns the elements that are in array a but not in array b.
 
-
-
+(a + b) #=> [-1, 2, 3, 4, 5, 4, 5, 6] concatenates the arrays a and b, resulting in a new array where the elements of array a are followed by the elements of array b. 
 
 
 
