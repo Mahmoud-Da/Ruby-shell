@@ -921,7 +921,7 @@ def foo
 end
 
 puts foo
-# 選択肢 #=> ✅
+# 選択肢 
 var = "REx"
 
 def foo
