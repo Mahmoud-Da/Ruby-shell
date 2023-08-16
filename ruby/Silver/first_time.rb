@@ -177,7 +177,7 @@ p a                  #=> [1, 2, 3, 4]
 p [].shift           #=> nil
 p [].shift(1)        #=> []
 
-#unshift
+# unshift Method
 arr = [1,2,3]
 arr.unshift #=> #引数がないとそのまま何もしない
 p arr  #=> [1, 2, 3]
@@ -421,7 +421,7 @@ p arr.collect { |a| a ? 1 : 2 }.inject(:+)
 
 
 #Memo
-# equalメソッド
+# equal Method
 # 二つのオブジェクトが同一のものかどうか調べる時に使用します。
 # other が self 自身の時、真を返します。[PARAM] other:
 # 比較するオブジェクトです。
@@ -438,7 +438,7 @@ p(4.equal?(4.0)) #=> false
 p(:foo.equal? :foo) #=> true
 
 
-#eqlメソッド
+#eql Method
 #オブジェクトと other が等しければ真を返します。Hash で二つのキーが等しいかどうかを判定するのに使われます。
 # The eql? method is used for comparing the content or values of objects rather than their memory locations.
 #  It is implemented differently by different classes.
@@ -449,7 +449,7 @@ p("foo".eql?("foo")) #=> true
 p(4.eql?(4)) #=> true
 p(4.eql?(4.0)) #=> false
 
-#collectメソッド 
+#collect Method 
 # 各要素に対してブロックを評価した結果を全て含む配列を返します。
 # In Ruby, map and collect are two different names for the same method
 # ブロックを省略した場合は Enumerator を返します。
@@ -458,7 +458,7 @@ p (1..3).map {|n| n * 3 }  # => [3, 6, 9]
 p (1..3).collect { "cat" } # => ["cat", "cat", "cat"]
 
 
-#injectメソッド
+#inject Method
 # 合計を計算する。
 p [2, 3, 4, 5].inject {|result, item| result + item }        #=> 14
 
@@ -471,6 +471,8 @@ p result   # => 15
 
 p [1, 2, 3, 4, 5].inject(:+)                    #=> 15
 p ["b", "c", "d"].inject("abbccddde", :squeeze) #=> "abcde"
+
+squeeze:
 
 
 
@@ -546,7 +548,7 @@ p a
 
 
 #Memo
-#compactメソッド
+# compact Method
 # compact は自身から nil を取り除いた配列を生成して返します。
 #  compact! は自身から破壊的に nil を取り除き、変更が行われた場合は self を、そうでなければ nil を返します。
  
@@ -683,7 +685,7 @@ a.inject(:+) + b.inject(:+) #=>28
 -2.0.abs2 # => 4
 
 
-#succ　メソッド
+#succ　Method
 # self の「次の」文字列/数字を返します。
 # succ と逆の動作をするメソッドはありません。また、succ という名前の由来は successor です。
 p "aa".succ   # => "ab"
@@ -818,7 +820,7 @@ p str
 
 
 # Memo
-# chopメソッド
+# chop Method
 # 字列の最後の文字を取り除いた新しい文字列を生成して返します。ただし、文字列の終端が "\r\n" であればその 2 文字を取り除きます。
 
 p "string\n".chop    # => "string"
