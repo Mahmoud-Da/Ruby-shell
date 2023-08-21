@@ -216,7 +216,16 @@ p c
 [1, 2, 5, 7, 8, 3, 6, 9]
 
 
+# Memo 
+nil || a & b | a && a | b
+# first 
+nill or (a & b | a && a | b)
 
+# second
+(a & b | a) and (a | b)
+
+#third
+a | b
 
 
 
