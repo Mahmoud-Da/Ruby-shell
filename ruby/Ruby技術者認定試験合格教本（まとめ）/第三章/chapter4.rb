@@ -97,3 +97,22 @@ a + b #=> Encoding::CompatibilityError
 "length Method"
 "abcde".length #=> 5
 "日本語".length #=> 3
+
+"sprintfの使用例"
+# 第一引数フーマット指定、　第二変数以降でフーマットしたい値
+sprintf("result: %#b",16) #=> "result: 0b10000"
+sprintf("result: %#o",16) #=> "result: 020"
+sprintf("result: %#x",16) #=> "result: 0x10"
+sprintf("result: %#X",16) #=> "result: 0X10"
+
+
+# 桁数の指定
+sprintf("result: %02d", 1) #=> "result: 01"
+sprintf("result: %04d", 1) #=> "result: 0001"
+sprintf("result: %05.2f", 1) #=> "result: 01.00"
+
+# 文字列の「%」sprintfと同じ意味
+"result: %02d" % 1 #=> "result: 01"
+"result: %04d" % 1 #=> "result: 0001"
+"result: %05.2f" % 1 #=>  "result: 01.00"
+
