@@ -39,3 +39,51 @@ p "\101" #=> "A"
 p "\x41" #=> "A"
 
 "pとprintとputsの違い"
+p: 
+# 改行：引数ごとに改行
+# 出力内容の構築：insepct
+# バックスラッシュ記法：そのまま出力
+
+print:
+# 改行：しない
+# 出力内容の構築：to_s
+# バックスラッシュ記法：適用した結果出力
+
+puts:
+# 改行：引数ごとに改行
+# 出力内容の構築：to_s
+# バックスラッシュ記法：適用した結果出力
+
+"ビアドキュメント"
+# 終端を示す職別子の前にスペースなどの文字記載してはいけない
+
+"例"
+query = <<SQL 
+    select *
+    from my_table
+SQL
+query #=> "    select *\n    from my_table\n"
+# 終端を示す職別子SQLを使用
+
+"階層が深い場青のビアドキュメント"
+def foo
+  <<-Result
+   Ru
+   By
+  Result
+end
+p foo #=> "   Ru\n   By\n"
+
+"シングルクォート"
+a = 1
+s = <<'TEST'
+#{a}
+TEST
+p s #=> "\#{a}\n"
+
+"ダブルクォート"
+a = 1
+s = <<"TEST"
+#{a}
+TEST
+p s #=> "1\n"
