@@ -115,4 +115,3 @@ sprintf("result: %05.2f", 1) #=> "result: 01.00"
 "result: %02d" % 1 #=> "result: 01"
 "result: %04d" % 1 #=> "result: 0001"
 "result: %05.2f" % 1 #=>  "result: 01.00"
-

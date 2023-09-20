@@ -105,4 +105,3 @@ puts `ls`
 # shell
 
 puts `date /T` # Windows の場合
-
