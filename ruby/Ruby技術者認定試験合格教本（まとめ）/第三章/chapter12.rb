@@ -81,3 +81,41 @@ end
 func(1) do
   2
 end #=> 3
+
+"Lambda"
+# Proc インスタンスを生成しますが、Procとは異なる動きをします
+
+lmd = lambda{|x| p x  }
+lmd = -> (x) { p x}
+lmd.call(1) #=> 1
+
+"Procの中のreturn"
+def func 
+  proc = Proc.new{ return 1}
+  proc.call
+  2 # 実行されない
+end
+
+p func #=> 1
+
+
+"Lambdaの中のreturn"
+def func 
+  proc = lambda{ return 1}
+  proc.call
+  2 # 実行される
+end
+
+p func #=> 2
+
+"procの引数"
+p1 = Proc.new{|x, y| y}
+p p1.call(1) #=> nil
+
+"lambdaの引数"
+p1 = lambda{|x, y| y}
+p p1.call(1) #=> ArgumentError
+
+"-> を使用してlambda記法"
+p1 = -> (x, y) {p x + y}
+p1.call(1, 2) #=> 3
