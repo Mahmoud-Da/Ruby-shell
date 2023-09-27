@@ -71,5 +71,105 @@ a = "abcdefg"
 a.slice!(2) #=> "c"
 puts a #=> "abdefg"
 
-"範囲指定の場合
-"
+"範囲指定の場合(1)" #[数字..数字]
+# 範囲としてRangeオブジェクトを指定した場合
+# -の数字（-1など）から始めるとnilが返す
+"abcdefg"[1..3] #=> "bcd"
+"abcdefg"[-1..2] #=> ""
+"abcdefg".slice(1..3) #=> "bcd"
+
+a = "abcdefg"
+a.slice!(1..3) #=> "bcd"
+puts a #=> "bcd"
+
+"範囲指定の場合(2)" #[数字, 数字]
+# 範囲としてRangeオブジェクトを指定だけではなく
+# -の数字（-1など）から始めると末尾から数える
+"abcdefg"[1, 3] ##=> "bcd"
+"abcdefg"[-1, 2] #=> "g"
+"abcdefg".slice(1, 3) #=> "bcd"
+
+"文字列で指定する"
+"abcdefg"["bc"] #=> "bc" 
+
+"abcdefg".slice("bc") #=> "bc" 
+
+"abcdefg"["bd"] #=> nil 
+
+a = "abcdefg"
+a.slice!("bc") #=> "bc"
+puts a #=> "adefg"
+
+"正規表現で指定する"
+"abcdefg"[/bc/] #=> "bc" 
+
+"abcdefg".slice(/bc/) #=> "bc" 
+
+"abcdefg"[/bd/] #=> nil 
+
+a = "abcdefg"
+a.slice!(/bc/) #=> "bc"
+puts a #=> "adefg"
+
+"文字列の変更"
+[] # 指定 + 交換
+*insert #文字列を交換するため  insert(インデックス数, "文字列")
+
+a = "abcdefg"
+a[1..3] = "xyz"
+puts a #=> axyzefg
+
+a = "abcdefg"
+a.insert(0, "b")
+puts a #=> babcdefg
+
+"文字列の変換"
+# 「!」を付いてあるメソッドが破壊的 *replace自体は破壊的
+*sub # 指定したパターンにマッチした最初のみの部分を特定の文字列に変換します。
+*sub!
+*gsub # 指定したパターンにマッチした全ての部分を特定の文字列に変換します。
+*gsub!
+*tr # 指定したパターンに含まれる文字を検索し、それを特定の文字列やパターンに合わせて変換する
+*tr!
+*tr_s # 指定したパターンに含まれる文字を検索し、それを特定の文字列やパターンに合わせて変換する + 重複する文字列１に圧縮
+*tr_s!
+*delete # 指定したパターンに含まれる文字を元の文字列から削除する。「パターン複数指定すると、全てのバターンに含まれる文字列のみ削除」
+*delete!
+*squeeze # 指定した文字が複数並んでいた場合に「1」文字に圧縮する
+*squeeze!
+*replace # 引数の文字列で自分自身の内容置き換えます。
+
+"sub/gsub"
+a = "abcdefg-abcdefg"
+a.sub(/abc/, "xyz") #=> "xyzdefg-abcdefg"
+
+a.gsub(/abc/, "xyz") #=> "xyzdefg-xyzdefg"
+
+
+"sub/gsub プロック"
+a = "abcdefg-abcdefg"
+a.sub(/abc/) {|str| "xyz"} #=> "xyzdefg-abcdefg"
+
+a.gsub(/abc/) {|str| "xyz"} #=> "xyzdefg-xyzdefg"
+
+
+"tr"
+a = "aabbccddeeffgg"
+a.tr("a-c", "A-c") #=> "AABBCCddeeffgg"
+
+a.tr_s("a-c", "A-c") #=> "ABCddeeffgg"
+
+"delete"
+a = "aabbccddeeffgg"
+a.delete("a-f", "d-g") #=> "aabbccgg"
+
+"squeeze"
+a = "aabbccddeeffgg"
+a.squeeze("a-e") #=> "abcdeffgg"
+
+"replace"
+a = "abc"
+a.replace("xyz")
+puts a #=> xyz
+
+"文字列の連結"
