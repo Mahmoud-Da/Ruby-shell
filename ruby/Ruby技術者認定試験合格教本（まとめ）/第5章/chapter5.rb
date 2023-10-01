@@ -264,3 +264,123 @@ a.length #=> 3
 a.bytesize #=> 9
 
 "文字列の割り付け"
+center # 中央
+ljust #左側
+rjust #右側
+
+a = "abc"
+a.center(20) #=> => "        abc         "
+a.center(20, "*") #=> "********abc*********"
+a.ljust(20) #=> "abc                 "
+a.rjust(20, "-") #=> "-----------------abc"
+
+"非表示文字列を交換する"
+dump # 文字列の中にある改行コードやタブ文字などの非表示文字列をバックスラッシュ記法に置き換えた文字列を返す
+a = "abc\tdef\tghi\n"
+puts a #=> abc	def	ghi
+puts a.dump #"abc\tdef\tghi\n"
+
+"文字列アンパック"
+# Unpacking a string in Ruby is the process of converting a string into a list of values. This can be done using the unpack() method.
+
+# The unpack() method takes a template string as an argument and returns an array of values. The template string specifies the format of the string that is being unpacked.
+
+# For example, the following code unpacks a string containing a date and time into an array of values:
+
+date_time_string = "2023-10-01 17:27:34"
+
+date_time_array = date_time_string.unpack("%Y-%m-%d %H:%M:%S")
+
+puts date_time_array
+# This code will print the following output to the console:
+
+["2023", "10", "01", "17", "27", "34"]
+["abc"].pack("a")    # => "a"
+["abc"].pack("a*")   # => "abc"
+["abc"].pack("a4")   # => "abc\x00"
+
+"abc\0".unpack("a4") # => ["abc\x00"]
+"abc ".unpack("a4")  # => ["abc "]
+
+"文字列内での検索"
+include? #指定した文字列が含んでいるなら、trueを返す
+index # indexメソッドは、し文字列や配列の中に指定した文字列が含まれていた場合、右方向で検索して、その文字列の開始位置を整数の値で返します。{str.index(検索したい文字列, [検索を開始する位置])}
+rindex # indexと同じですが、左方向で検索する
+match #　指定された正規表現によるマッチング行い、マッチした場合Matchオプジェクトを返す
+scan # マッチした部分文字列の配列を返す
+
+a = "abcdefg"
+a.include?("abc") #=> true
+a.index("cd", 2) #=> 2
+a.rindex("cd", 5) #=> 2
+a.match(/[c-f]/)=> #<MatchData "c">
+a.scan(/[a]/) #=> ["a"]
+
+"ababab".scan(/[a]/) #=> ["a", "a", "a"]
+
+"次の文字列を求める"
+succ # 次の文字や数字を返す　最後の文字列が一緒なら全てを変更する
+succ!
+next # succと同じ
+next!
+
+"abc123".succ #=> "abc124"
+"123abc".succ #=> "123abd"
+"123xyz".succ #=> "123xza"
+"9999".succ #=> "10000"
+9999.succ #=> 10000
+"zzzz".succ #=> "aaaaa"
+"ZZZZ".succ #=> "AAAAA"
+
+"文字列に対する文字列"
+each_line # 文字列の各行に対して、繰り返する
+lines
+
+each_byte # 文字列のバイト単位として、繰り返す
+bytes
+
+each_char # 字列の文字単位として、繰り返す
+chars
+
+upto # 自分自身指定さらて文字列まで、succメソッドで生成される次の文字列を使って繰り返する
+"abc\ndef\nngh".each_line {|c| puts c}
+# abc
+# def
+# ngh
+"abc\ndef\nngh".lines #=> ["abc\n", "def\n", "ngh"]
+
+"abc".each_byte {|c| puts c}
+# 97
+# 98
+# 99
+"abc".bytes #=> [97, 98, 99]
+
+"ルビー".each_char {|c| puts c}
+# ル
+# ビ
+# ー
+"ルビー".chars #=> ["ル", "ビ", "ー"]
+
+"a".upto("c") { |c| puts c }
+# a
+# b
+# c
+
+"他のクラスへの変換"
+hex # 16進数に変換
+oct # 8進数に変換
+to_f # Floatに変換
+to_i # Integerに変換
+to_s # 自分自身を返す
+to_str # 自分自身を返す
+to_sym # Symbolに変換
+intern # Symbolに変換
+
+"abc".hex #=> 2748
+"010".oct #=> 8
+"1.2".to_f #=> 1.2
+"10".to_i #=> 10
+"a".to_s #=> "a"
+"a".to_str #=> "a"
+"a".to_sym #=> :a
+"a".intern #=> :a
