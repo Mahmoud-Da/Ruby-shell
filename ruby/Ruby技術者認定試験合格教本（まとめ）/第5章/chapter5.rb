@@ -173,3 +173,94 @@ a.replace("xyz")
 puts a #=> xyz
 
 "文字列の連結"
++ # 連結後に新しいオプジェクトを生成
+<< # 元のオプジェクトの内容変更
+concat # 元のオプジェクトの内容変更
+* # 指定した数値の数だけ繰り返す
+
+a = "abc"
+
+a.object_id #=> 16720
+a << "def" #=> "abcdef"  {またはconcat}
+a.object_id #=> 16720  {同じオプジェクト}
+
+a += "ghi" #=> "abcdefghi"
+a.object_id #=> 31480 {新しいオプジェクト}
+
+"abc" * 2 #=> "abcabc"
+
+"文字列の大文字または小文字への変換"
+capitalize # 最初の半角数字のみ大文字に変換、残りの文字小文字化する
+capitalize!
+
+downcase # 全半角小文字化
+downcase!
+
+upcase # 全半角大文字化
+upcase!
+
+swapcase # 全半角小文字化 + 全半角大文字化
+swapcase!
+
+a = "abcDEF"
+
+a.capitalize #=> "Abcdef"
+a.downcase #=> "abcdef"
+a.upcase #=> "ABCDEF"
+a.swapcase #=> "ABCdef"
+
+"文字列の末尾や先頭にある空白や改行を削除する"
+# 空白文字["\t", "\r", "\n", "\f", "\v"]
+chomp # 指定した末尾のみにある改行を削除、指定していない場合全ての改行を取り除く文字列を返す
+chomp!
+
+strip # 先頭と末尾にある改行を削除
+strip!
+
+lstrip # 先頭のみにある改行を削除
+lstrip!
+
+rstrip # 末尾のみにある改行を削除
+rstrip!
+
+chop # 末尾の文字列を取り除く
+chop!
+
+a = "\n\nabcdef\n\n"
+
+a.chomp #=> "\n\nabcdef\n"
+a.strip #=> "abcdef"
+a.lstrip #=> "abcdef\n\n"
+a.rstrip #=> "\n\nabcdef"
+a.chop #=> "\n\nabcdef\n"
+
+a.chomp.chomp.chomp #=> "\n\nabcdef"
+a.chop.chop.chop #=> "\n\nabcde"
+
+"文字列逆順にする"
+reverse # 逆順にする
+reverse!
+
+a = "abcdef"
+a.reverse #=> "fedcba"
+
+"文字列の長さ"
+length # 文字数を数える　{sizeと同じ}
+size
+count # 指定したバターンの文字数を数える
+empty? # 空かどうか判定する
+bytesize # バイト数を数える
+
+a = "abdef"
+a.length #=> 5
+a.count # ArgumentError
+a.count("a-e") #=> 4
+a.empty? #=> false
+"".empty? #=> true
+a.bytesize #=> 5
+
+a = "ルビー"
+a.length #=> 3
+a.bytesize #=> 9
+
+"文字列の割り付け"
