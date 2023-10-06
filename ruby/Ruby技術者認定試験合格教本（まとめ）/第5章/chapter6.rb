@@ -62,3 +62,96 @@ a = [1, 2, 3]
 a.replace([3, 2, 1]) #=> [3, 2, 1]
 
 "配列の要素を参照する"
+# 要素数以上渡すとnilを返す
+[] # 指定したインデックス参照
+slice # []と同じ
+at # []と同じ
+values_at # []と同じ、ただ配列で返す
+fetch # []と同じ、要素数以上渡すエラーを返す
+first # 配列の先頭を返す
+last # 配列の末尾を返す
+assoc # 配列の配列を検索し、その配列の「最初」の要素が指定された値と＝＝で等しければその要素を返す、等しじゃなければnilを返す
+rassoc # 配列の配列を検索し、その配列のインデックス１の要素が指定された値と＝＝で等しければその要素を返す
+
+"例"
+a = [1, 2, 3]
+
+a.slice(1) #=> 2
+a.slice(1, 2) #=> => [2, 3]
+a.slice(1..2) #=> => [2, 3]
+a[1] #=> 2
+a[1, 2] #=> [2, 3]
+a[1..2] #=> [2, 3]
+a.at(2) #=> 3
+a.values_at(2) #=> [3]
+a.values_at(4) #=> [nil]
+a.fetch(4) #=> IndexError
+
+a = [[1, 2], [3, 4], [5, 6], [7, 8]]
+a.assoc(3) #=> [3, 4]
+a.assoc(4) #=> nil
+a.assoc(10) #=> nil
+
+a.rassoc(3) #=> nil
+a.rassoc(4) #=> [3, 4] 
+a.rassoc(10) #=> nil
+
+"配列の検索を調べる"
+*include? # 指定された値が要素の中に存在する場合真を返す
+*index # 配列の先頭や末尾から指定された値が要素の中に＝＝等しいなら位置を返す、見つからない場合nilを返す
+*rindex # 
+
+# The index() method searches for the substring from the beginning of the string, while the rindex() method searches for the substring from the end of the string.
+
+# The index() method returns the index of the first occurrence of the substring, while the rindex() method returns the index of the last occurrence of the substring.
+
+# The index() method returns nil if the substring is not found, while the rindex() method returns nil if the substring is not found or if the substring is empty.
+
+a = [1, 2, 3, 4, 4]
+a.include?(3) #=> true
+a.index(4) #=> 3
+a.rindex(4) #=> 4
+
+"配列の要素を削除する"
+*delete_at # 指定されたインデックスに対応する要素を取り除き、その要素を返す
+*delete_if # プロックを渡し、その評価結果が真になった要素全て取り除いた自分自身を返す
+*reject! # delete_if と同じ
+*delete # 指定された値と＝＝メソッドで等しい要素があれば取り除いてその値を、なければnilを返す
+*clear # 要素を全て削除します。
+*slice! # 指定されたインデックスに対応する要素を取り除き、その取り除いた要素を返します。
+*shift # 「先頭」指定された数だけ要素を取り除いて返します、指定がなければ１が指定されたとして先頭の要素を返します。
+*pop # 「末尾」指定された数だけ要素を取り除いて返します、指定がなければ１が指定されたとして先頭の要素を返します。
+- # 指定された配列にある要素を自身自分から取り除いた配列を返す
+
+"例"
+a = [1, 2, 3, 4, 5]
+a.delete_at(2) #=> 3
+p a #=> [1, 2, 4, 5]
+
+a = [1, 2, 3, 4, 5]
+a.delete_if {|n| n % 2 == 0} #=> [1, 3, 5]
+a = [1, 2, 3, 4, 5]
+a.reject! {|n| n % 2 == 0} #=> [1, 3, 5]
+
+a = [1, 2, 3, 4, 5]
+a.delete(2) #=> 3
+p a #=> [1, 2, 4, 5]
+
+a = [1, 2, 3, 4, 5]
+a.clear #=> []
+
+a = [1, 2, 3, 4, 5]
+a.slice!(2, 2) #=> [3, 4]
+p a #=> [1, 2, 5]
+
+
+a = [1, 2, 3, 4, 5]
+a.shift(2) #=> => [1, 2]
+p a #=> [3, 4, 5]
+a.shift #=> 3
+p a #=> [4, 5]
+
+a = [1, 2, 3, 4, 5]
+a - [3, 4] #=> [1, 2, 5]
+
+"配列の演算"
