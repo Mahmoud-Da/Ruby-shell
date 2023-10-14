@@ -74,8 +74,8 @@ a.find_all{|key, value| key % 2 == 0} #=> [[2, "b"], [4, "d"]]
 *merge # 指定されたハッシュが自分自身に統合します。デフォルト値も引き継ぎます、ブロックに与えられた場合はキーと自分自身の値、指定されたハッシュの値が渡され、プロックの評価結果を返す。「元のオブジェクトを変更しない」
 *merge! # 指定されたハッシュが自分自身に統合します。デフォルト値も引き継ぎます、ブロックに与えられた場合はキーと自分自身の値、指定されたハッシュの値が渡され、プロックの評価結果を返す。「元のオブジェクトを変更する」(つまり破壊的)
 *update # merge!と同じ
-*invert # キーと値を逆にしたハッシュを返す
-*clear # ハッシュが空にする
+*invert # キーと値を逆にしたハッシュを返す、ただ値は重複している場合には、結果は不定となる (破壊的ではない)
+*clear # ハッシュが空にする (破壊的)
 
 
 a = {"apple" => "fruits", "coffee" => "drink"}
@@ -91,3 +91,126 @@ a.delete("apple") #=> "fruits"
 puts a #=> {"coffee"=>"drink"}
 
 a = {"apple" => "fruits", "coffee" => "drink"}
+a.reject{ |key, value| value == "drink" } #=> {"apple"=>"fruits"}
+a #=> {"apple"=>"fruits", "coffee"=>"drink"}
+
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.reject!{ |key, value| value == "drink" } #=> {"apple"=>"fruits"}
+a #=> {"apple"=>"fruits"}
+
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.object_id #=> 45300
+a.replace({"orange" => "fruits", "tea" => "drink"})
+a #=> {"orange"=>"fruits", "tea"=>"drink"}
+a.object_id #=> 45300
+
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.shift #=> ["apple", "fruits"]
+a #=> {"coffee"=>"drink"}
+
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.merge({"orange" => "fruits", "tea" => "drink", "apple" => "fruits"}) #=> {"apple"=>"fruits", "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+a #=> {"apple"=>"fruits", "coffee"=>"drink"}
+a.merge({"orange" => "fruits", "tea" => "drink", "apple" => "fruits"}) {|key, self_key, other_val, self_val|} 
+#=> {"apple"=>nil, "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.merge!({"orange" => "fruits", "tea" => "drink", "apple" => "fruits"}) #=> {"apple"=>"fruits", "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+a #=> {"apple"=>"fruits", "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.update({"orange" => "fruits", "tea" => "drink", "apple" => "fruits"}) #=> {"apple"=>"fruits", "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+a #=> {"apple"=>"fruits", "coffee"=>"drink", "orange"=>"fruits", "tea"=>"drink"}
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.invert #=> {"fruits"=>"apple", "drink"=>"coffee"}
+a #=> {"apple"=>"fruits", "coffee"=>"drink"}
+
+{"apple" => "fruits", "coffee" => "drink","orange" => "fruits", "tea" => "drink" }.invert #=> {"fruits"=>"orange", "drink"=>"tea"}
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.clear #=> {}
+a #=> {}
+
+"ハッシュを調べる"
+*length # ハッシュの組み合わせの数を返す
+*size # lengthと同じ
+*empty? # ハッシュからかどうか真を返す
+*include? # ハッシュにキー存在しているなら真を返す
+*has_key? # include?と同じ
+*key? # include?と同じ
+*member? # include?と同じ
+*has_value? # ハッシュに値が存在する場合は真になる
+*value? # has_value?と同じ
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.length #=> 2
+a.size #=> 2
+a.empty? #=> false
+
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.include?("apple") #=> true
+a.has_key?("apple") #=> true
+a.key?("apple") #=> true
+a.member?("apple") #=> true
+
+a.value?("fruits") #=> true
+a.has_value?("fruits") #=> true
+
+"ハッシュを使った繰り返し"
+*each # 与えらたプロックにキーと値を渡して評価する
+*each_pair # eachと同じ
+*each_key # キーに与えらたプロックにキーと値を渡して評価する
+*each_value # 値に与えらたプロックにキーと値を渡して評価する
+
+a = {"apple" => "fruits", "coffee" => "drink"}
+a.each{ |key, value| puts "key:#{key} " => "value:#{value}" }
+# {"key:apple "=>"value:fruits"}
+# {"key:coffee "=>"value:drink"}
+
+a.each_pair{ |key, value| puts "key:#{key} " => "value:#{value}" }
+# {"key:apple "=>"value:fruits"}
+# {"key:coffee "=>"value:drink"}
+
+a.each_key{ |key| puts "key:#{key}" }
+# key:apple
+# key:coffee
+
+a.each_value{ |value| puts "value:#{value}" }
+# value:fruits
+# value:drink
+
+# 追加
+a.each_with_index do |(key, value), index|
+  puts "value#{index + 1}:#{value}"
+end
+
+# value1:fruits
+# value2:drink
+
+"ハッシュをソートする"
+*sort # ハッシュとキーと値の組み合わせの配列に変換し、それおをソートした結果を返す
+# ハッシュ自身をソートしりのではないこと注意。(破壊的ではない)
+# プロックが与えられた場合には、キーと値の組み合わせの配列が渡される
+
+a = { 4 => "a", 3 => "b", 2 => "c", 1 => "d"}
+a.sort #=> [[1, "d"], [2, "c"], [3, "b"], [4, "a"]]
+a #=> {4=>"a", 3=>"b", 2=>"c", 1=>"d"}
+
+a.sort{ |a, b| a[1] <=> b[1] } #=> [[4, "a"], [3, "b"], [2, "c"], [1, "d"]]
+a.sort{ |a, b| b[1] <=> a[1] } #=> [[1, "d"], [2, "c"], [3, "b"], [4, "a"]]
+a.sort{ |a, b| b <=> a } #=> [[4, "a"], [3, "b"], [2, "c"], [1, "d"]]
+a.sort{ |a, b| a <=> b } #=> [[1, "d"], [2, "c"], [3, "b"], [4, "a"]]
+
+"ハッシュを変換"
+*to_a #配列に変換
+
+a = { 4 => "a", 3 => "b", 2 => "c", 1 => "d"}
+a.to_a #=> [[4, "a"], [3, "b"], [2, "c"], [1, "d"]]
+a.to_a.flatten #=> [4, "a", 3, "b", 2, "c", 1, "d"]
+a #=> {4=>"a", 3=>"b", 2=>"c", 1=>"d"}
