@@ -61,8 +61,18 @@ readbyte # EOFError
 "IOからの出力"
 *write # IOに対して、引数の文字列を出力し、引数が文字例以外の場合は、_to.sメソッドで文字列化して出力する。
 *puts # IOに対して、複数のオプジェクトを出力し、引数が文字例や配列以外の場合は、まず_to.aryメソッドで配列化、その後_to.sメソッドで文字列化して出力する。
-*print # 
+*print # IOに対して、引数の文字列を出力し、複数のオプジェクトを渡された場合は、各オプジェクトの間に「$.」の値を出力する
 *printf # C言語と同じで指定されたフォーマットで返す
-*putc # 
-<< # 
-*flush # 
+*putc # IOに対して、引数の文字列を出力し、引数が整数の場合にはその最下位バイトを文字する文字を、文字列の場合は先頭の一文字を出力する
+<< # 指定されたオブジェクトを出力数重する。
+*flush # IO内部バッファをフラッシュして出力する
+
+STDOUT.write("this.is Ruby programe") # this.is Ruby programe=> 21
+STDOUT.puts("abcdefg", "hijklmn")
+# abcdefg
+# hijklmn
+# => nil
+STDOUT.print("abcdefg", "hijklmn") # abcdefghijklmn=> nil
+STDOUT.printf("%010d", 123456) #0000123456=> nil
+STDOUT.putc("a") #a=> "a"
+STDOUT.putc(0x3042) #B=> 12354
