@@ -76,3 +76,48 @@ STDOUT.print("abcdefg", "hijklmn") # abcdefghijklmn=> nil
 STDOUT.printf("%010d", 123456) #0000123456=> nil
 STDOUT.putc("a") #a=> "a"
 STDOUT.putc(0x3042) #B=> 12354
+
+"IOオブジェクトの状態を調べる"
+*stat # IOオブジェクトの状態を表すFile::Stat
+*closed? # ファイルが閉じられたかどうかを調べる
+*eof # 
+*eof? # ファイルの終端に到着したかどうか調べる 
+*lineno # 現在の行番号を返す
+*sync # パッファのモードを調べる
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.eof? #=> false
+io.readline #=> "let b: string;"
+io.eof? #=> true
+io.close #=> nil
+io.closed? #=> true
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.lineno #=> 0
+io.readline #=> "let b: string;"
+io.lineno #=> 1
+
+"ファイルポインタの移動や設定"
+*rewind # ファイルのポインタを先頭に移動し、linenoの設置を０に設定する
+*pos # ファイルポインタ設定できる
+*seek # 指定した数だけファイルポインタを、2番目の引数の位置から移動する
+IO::SEEK_SET # ファイルの先頭からの位置を表す定数 { seekメソッドの二番目の引数 }
+IO::SEEK_CUR # 現在のファイルのポインタ位置を表す { seekメソッドの二番目の引数 }
+IO::SEEK_SET # *ファイルの末尾からの位置を表す定数 { seekメソッドの二番目の引数 }
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.rewind #=> 0
+io.read #=> "let b: string;"
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.pos  #=> 0
+io.pos = 3 #=> 3
+io.read #=> " b: string;"
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.seek(2) #=> 0
+io.read #=> "t b: string;"
+
+io = open("b.tsx") #=> #<File:b.tsx>
+io.seek(-1, IO::SEEK_END) #=> 0
+io.read #=> ";"
