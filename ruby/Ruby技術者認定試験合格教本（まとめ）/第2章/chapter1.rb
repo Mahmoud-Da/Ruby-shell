@@ -24,6 +24,3 @@ hoge.test
 "require vs load"
 require #=> なんでも実行しても一回しか実行しない　/ 自動的に補完する
 load #=> 実行された回数だけ実行する　/ 補完しない
-
-
-
